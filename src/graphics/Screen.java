@@ -56,8 +56,8 @@ public class Screen {
                 int xa = x + xp;
                 if (xa < -16 || xa >= width || ya < 0 || ya >= height) break;
                 if (xa < 0) xa = 0;
-                int col = sprite.pixels[x + y * 16];
-                if (col != 0xFFFFFFFF) pixels[xa + ya * width] = col;
+                int color = sprite.pixels[x + y * 16];
+                if (color != 0xFFFFFFFF) pixels[xa + ya * width] = color;
             }
         }
     }
