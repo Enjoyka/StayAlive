@@ -4,6 +4,7 @@ import entity.mob.Player;
 import graphics.Screen;
 import input.Keyboard;
 import level.Level;
+import level.SpawnLevel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,8 +39,8 @@ public class Game extends Canvas implements Runnable {
         screen = new Screen(width, height);
         frame = new JFrame();
         key = new Keyboard();
-        level = new Level(64, 64);
-        player = new Player(key);
+        level = new SpawnLevel("D:\\Work\\IdeaProjects\\StayAlive\\res\\textures\\level.png");
+        player = new Player(6 * 16, 5 * 16, key);
 
         addKeyListener(key);
     }
