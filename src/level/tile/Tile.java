@@ -12,6 +12,12 @@ public class Tile {
     public static Tile rock = new RockTile(Sprite.rock);
     public static Tile voidTile = new VoidTile(Sprite.voidSprite);
 
+    public static final int GRASS_COLOR  = 0xFF00FF00;
+    public static final int FLOWER_COLOR = 0xFFFFFF00;
+    public static final int ROCK_COLOR   = 0xFF7F7F7F;
+    public static final int WATER_COLOR  = 0xFF7F7F7F; //unused
+    //make more stuff like this
+
     public Tile(Sprite sprite) {
         this.sprite = sprite;
     }

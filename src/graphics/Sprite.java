@@ -6,11 +6,15 @@ public class Sprite {
     public int[] pixels;
     private SpriteSheet sheet;
 
-    public static Sprite grass = new Sprite(16, 0, 0, SpriteSheet.tiles);
-    public static Sprite flower = new Sprite(16, 1, 0, SpriteSheet.tiles);
+    //Spawn level here:
+    public static Sprite grass = new Sprite(16, 0, 1, SpriteSheet.tiles);
+    public static Sprite flower = new Sprite(16, 1, 1, SpriteSheet.tiles);
     public static Sprite rock = new Sprite(16, 2, 0, SpriteSheet.tiles);
-    public static Sprite voidSprite = new Sprite(16, 0xFF00FF);
 
+    public static Sprite voidSprite = new Sprite(16, 0);
+    //mb make more sprites
+
+    //Player sprites here:
     public static Sprite player_forward = new Sprite(16, 0, 12, SpriteSheet.tiles);
     public static Sprite player_right = new Sprite(16, 1, 12, SpriteSheet.tiles);
     public static Sprite player_back = new Sprite(16, 2, 12, SpriteSheet.tiles);

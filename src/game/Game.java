@@ -5,6 +5,7 @@ import graphics.Screen;
 import input.Keyboard;
 import level.Level;
 import level.SpawnLevel;
+import level.TileCoordinate;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,15 +20,16 @@ public class Game extends Canvas implements Runnable {
     public static int height = width / 16 * 9;
     public static int scale = 3;
     public static String title = "Stay Alive";
+    public static ImageIcon icon;
 
     private Thread thread;
     private JFrame frame;
     private Keyboard key;
     private Level level;
     private Player player;
-    private boolean running = false;
-
     private Screen screen;
+
+    private boolean running = false;
 
     private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
@@ -36,11 +38,14 @@ public class Game extends Canvas implements Runnable {
         Dimension size = new Dimension(width * scale, height * scale);
         setPreferredSize(size);
 
+        icon = new ImageIcon("D:\\Work\\IdeaProjects\\StayAlive\\res\\icon.png");
         screen = new Screen(width, height);
         frame = new JFrame();
         key = new Keyboard();
-        level = new SpawnLevel("D:\\Work\\IdeaProjects\\StayAlive\\res\\textures\\level.png");
-        player = new Player(6 * 16, 5 * 16, key);
+        level = new SpawnLevel("D:\\Work\\IdeaProjects\\StayAlive\\res\\levels\\level.png");
+        TileCoordinate playerSpawn = new TileCoordinate(10, 10);
+        player = new Player(playerSpawn.x(), playerSpawn.y(), key);
+        player.init(level);
 
         addKeyListener(key);
     }
@@ -127,6 +132,7 @@ public class Game extends Canvas implements Runnable {
     public static void main(String[] args) {
         Game game = new Game();
         game.frame.setResizable(false);
+        game.frame.setIconImage(icon.getImage());
         game.frame.setTitle(Game.title);
         game.frame.add(game);
         game.frame.pack();
@@ -136,5 +142,4 @@ public class Game extends Canvas implements Runnable {
 
         game.start();
     }
-
 }
