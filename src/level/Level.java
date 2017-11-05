@@ -1,16 +1,20 @@
 package level;
 
+import entity.Entity;
 import graphics.Screen;
 import level.tile.Tile;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Level {
     protected int width, height;
     protected int[] tilesInt;
     protected int[] tiles;
+    protected int tile_size;
 
-    public Random random = new Random();
+    private List<Entity> entities = new ArrayList<Entity>();
 
     public Level(int width, int height) {
         this.width = width;
@@ -27,16 +31,21 @@ public class Level {
     protected void generateLevel() {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                tilesInt[x + y * width] = random.nextInt(4);
+                getTile(x, y);
             }
         }
+        tile_size = 16;
     }
 
     protected void loadLevel(String path) { }
 
-    public void update() { }
+    public void update() {
+        for (int i = 0; i < entities.size(); i++ )
+            entities.get(i).update();
+    }
 
-    private void time() { }
+    private void time() {
+    }
 
     public void render(int xScroll, int yScroll, Screen screen) {
         screen.setOffset(xScroll, yScroll);
@@ -50,6 +59,12 @@ public class Level {
                 getTile(x, y).render(x, y, screen);
             }
         }
+        for (int i = 0; i < entities.size(); i++ )
+            entities.get(i).render(screen);
+    }
+
+    public void add(Entity e) {
+        entities.add(e);
     }
 
     public Tile getTile(int x, int y) {

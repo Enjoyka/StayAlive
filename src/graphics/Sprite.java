@@ -32,6 +32,8 @@ public class Sprite {
     public static Sprite player_left1 = new Sprite(16, 3, 13, SpriteSheet.tiles);
     public static Sprite player_left2 = new Sprite(16, 3, 15, SpriteSheet.tiles);
 
+    //Projectile sprites here:
+    public static Sprite projectile_wizard = new Sprite(16, 0, 0, SpriteSheet.projectile_wizard);
 
     public Sprite(int size, int x, int y, SpriteSheet sheet) {
         SIZE = size;
