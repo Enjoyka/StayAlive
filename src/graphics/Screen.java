@@ -1,6 +1,5 @@
 package graphics;
 
-import entity.mob.Player;
 import level.tile.Tile;
 
 import java.util.Random;

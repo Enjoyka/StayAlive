@@ -1,8 +1,10 @@
 package entity.mob;
 
+import game.Game;
 import graphics.Screen;
 import graphics.Sprite;
 import input.Keyboard;
+import input.Mouse;
 
 public class Player extends Mob {
     private Keyboard input;
@@ -39,6 +41,17 @@ public class Player extends Mob {
             walking = true;
         } else {
             walking = false;
+        }
+
+        updateShooting();
+    }
+
+    private void updateShooting() {
+        if (Mouse.getButton() == 1) {
+            double dx = Mouse.getX() - Game.getWindowWidth() / 2;
+            double dy = Mouse.getY() - Game.getWindowHeight() / 2;
+            double dir = Math.atan2(dx, dy);
+            shoot(x, y, dir);
         }
     }
 
