@@ -6,12 +6,12 @@ public class Sprite {
     public int[] pixels;
     private SpriteSheet sheet;
 
+    public static Sprite voidSprite = new Sprite(16, 0);
+
     //Spawn level here:
     public static Sprite grass = new Sprite(16, 0, 1, SpriteSheet.tiles);
     public static Sprite flower = new Sprite(16, 1, 1, SpriteSheet.tiles);
     public static Sprite rock = new Sprite(16, 2, 0, SpriteSheet.tiles);
-
-    public static Sprite voidSprite = new Sprite(16, 0);
     //mb make more sprites
 
     //Player sprites here:

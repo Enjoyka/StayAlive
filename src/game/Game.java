@@ -3,6 +3,7 @@ package game;
 import entity.mob.Player;
 import graphics.Screen;
 import input.Keyboard;
+import input.Mouse;
 import level.Level;
 import level.SpawnLevel;
 import level.TileCoordinate;
@@ -47,7 +48,10 @@ public class Game extends Canvas implements Runnable {
         player = new Player(playerSpawn.x(), playerSpawn.y(), key);
         player.init(level);
 
+        Mouse mouse = new Mouse();
         addKeyListener(key);
+        addMouseListener(mouse);
+        addMouseMotionListener(mouse);
     }
 
     public synchronized void start() {
@@ -120,24 +124,20 @@ public class Game extends Canvas implements Runnable {
         }
 
         Graphics g = bs.getDrawGraphics();
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, getWidth(), getHeight());
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-        g.setColor(Color.WHITE);
-        g.setFont(new Font("Verdana", 0, 50));
         g.dispose();
         bs.show();
     }
 
     public static void main(String[] args) {
         Game game = new Game();
-        game.frame.setResizable(false);
         game.frame.setIconImage(icon.getImage());
         game.frame.setTitle(Game.title);
         game.frame.add(game);
         game.frame.pack();
         game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         game.frame.setLocationRelativeTo(null);
+        game.frame.setResizable(false);
         game.frame.setVisible(true);
 
         game.start();
