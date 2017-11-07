@@ -1,5 +1,7 @@
 package entity.mob;
 
+import entity.projectile.Projectile;
+import entity.projectile.WizardProjectile;
 import game.Game;
 import graphics.Screen;
 import graphics.Sprite;
@@ -10,6 +12,7 @@ public class Player extends Mob {
     private Keyboard input;
     private Sprite sprite;
     private int animate = 0;
+    private int fireRate = 0;
     private boolean walking = false;
 
     public Player(Keyboard input) {
@@ -22,9 +25,11 @@ public class Player extends Mob {
         this.y = y;
         this.input = input;
         sprite = Sprite.player_forward;
+        fireRate = WizardProjectile.FIRE_RATE;
     }
 
     public void update() {
+        if (fireRate > 0) fireRate--;
         int xa = 0, ya = 0;
 
         if (animate < 7500)
@@ -42,16 +47,24 @@ public class Player extends Mob {
         } else {
             walking = false;
         }
-
+        clear();
         updateShooting();
     }
 
+    private void clear() {
+        for (int i = 0; i < level.getProjectiles().size(); i++) {
+            Projectile p = level.getProjectiles().get(i);
+            if (p.isRemoved()) level.getProjectiles().remove(i);
+        }
+    }
+
     private void updateShooting() {
-        if (Mouse.getButton() == 1) {
+        if (Mouse.getButton() == 1 && fireRate <= 0) {
             double dx = Mouse.getX() - Game.getWindowWidth() / 2;
             double dy = Mouse.getY() - Game.getWindowHeight() / 2;
             double dir = Math.atan2(dy, dx);
             shoot(x, y, dir);
+            fireRate = WizardProjectile.FIRE_RATE;
         }
     }
 

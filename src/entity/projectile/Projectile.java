@@ -3,12 +3,18 @@ package entity.projectile;
 import entity.Entity;
 import graphics.Sprite;
 
+import java.util.Random;
+
 public abstract class Projectile extends Entity {
     protected final int xOrigin, yOrigin;
-    protected double speed, rateOfFire, range, damage;
+    protected double speed, range, damage;
+    protected double x, y;
     protected double nx, ny; //new x, new y
     protected double angle;
+    protected double distance;
     protected Sprite sprite;
+
+    protected final Random random = new Random();
 
     public Projectile(int x, int y, double dir) {
         xOrigin = x;
