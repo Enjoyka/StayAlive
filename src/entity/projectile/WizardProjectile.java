@@ -1,5 +1,7 @@
 package entity.projectile;
 
+import entity.spawner.ParticleSpawner;
+import entity.spawner.Spawner;
 import graphics.Screen;
 import graphics.Sprite;
 
@@ -17,14 +19,16 @@ public class WizardProjectile extends Projectile {
     }
 
     public void update() {
+        if (level.tileCollision((int) (x + nx), (int) (y + ny), 7, 5, 5)) {
+            level.add(new ParticleSpawner((int) x, (int) y, 50, 20, level));
+            remove();
+        }
         move();
     }
 
     protected void move() {
-        if (!level.tileCollision(x, y, nx, ny, 7)) {
-            x += nx;
-            y += ny;
-        }
+        x += nx;
+        y += ny;
         if (distance() > range) remove();
     }
 
