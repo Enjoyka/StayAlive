@@ -3,6 +3,7 @@ package game;
 import entity.mob.Player;
 import graphics.Screen;
 import graphics.Sprite;
+import graphics.SpriteSheet;
 import input.Keyboard;
 import input.Mouse;
 import level.Level;
@@ -128,6 +129,7 @@ public class Game extends Canvas implements Runnable {
         int yScroll = player.y - screen.height / 2;
         level.render(xScroll, yScroll, screen);
         player.render(screen);
+//        screen.renderSheet(40, 40, SpriteSheet.player_down, false); // make player sprites in other file
 
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = screen.pixels[i];

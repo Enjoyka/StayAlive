@@ -3,8 +3,10 @@ package entity.mob;
 import entity.projectile.Projectile;
 import entity.projectile.WizardProjectile;
 import game.Game;
+import graphics.AnimatedSprites;
 import graphics.Screen;
 import graphics.Sprite;
+import graphics.SpriteSheet;
 import input.Keyboard;
 import input.Mouse;
 
@@ -14,6 +16,8 @@ public class Player extends Mob {
     private int animate = 0;
     private int fireRate = 0;
     private boolean walking = false;
+
+    private AnimatedSprites test = new AnimatedSprites(SpriteSheet.player_down, 16, 16, 4);
 
     public Player(Keyboard input) {
         this.input = input;
@@ -29,6 +33,7 @@ public class Player extends Mob {
     }
 
     public void update() {
+        test.update();
         if (fireRate > 0) fireRate--;
         int xa = 0, ya = 0;
 
@@ -112,7 +117,7 @@ public class Player extends Mob {
                 }
             }
         }
-
+        sprite = test.getSprite();
         screen.renderPlayer(x, y, sprite);
     }
 }
