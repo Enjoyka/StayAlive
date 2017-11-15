@@ -30,4 +30,9 @@ public class AnimatedSprites extends Sprite {
     public void setFrameRate(int frames) {
         rate = frames;
     }
+
+    public void setFrame(int index) {
+        if (index > sheet.getSprites().length - 1) return;
+        sprite = sheet.getSprites()[index];
+    }
 }
