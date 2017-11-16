@@ -14,11 +14,18 @@ public class SpriteSheet {
     public static SpriteSheet tiles = new SpriteSheet("D:\\Work\\IdeaProjects\\StayAlive\\res\\textures\\sheets\\spritesheet.png", 256);
     public static SpriteSheet projectile_wizard = new SpriteSheet("D:\\Work\\IdeaProjects\\StayAlive\\res\\textures\\sheets\\projectiles\\wizard.png", 48);
 
-    public static SpriteSheet player = new SpriteSheet("D:\\Work\\IdeaProjects\\StayAlive\\res\\textures\\sheets\\player_sheet.png", 64, 64); // player path
+    public static SpriteSheet player = new SpriteSheet("D:\\Work\\IdeaProjects\\StayAlive\\res\\textures\\sheets\\player_sheet.png", 64, 64);
     public static SpriteSheet player_up = new SpriteSheet(player, 0, 0, 1, 4, 16);
     public static SpriteSheet player_right = new SpriteSheet(player, 1, 0, 1, 4, 16);
     public static SpriteSheet player_down = new SpriteSheet(player, 2, 0, 1, 4, 16);
     public static SpriteSheet player_left = new SpriteSheet(player, 3, 0, 1, 4, 16);
+
+    public static SpriteSheet dummy = new SpriteSheet("D:\\Work\\IdeaProjects\\StayAlive\\res\\textures\\sheets\\player_sheet.png", 64, 64);
+    //download sprites for dummy and create
+    public static SpriteSheet dummy_up = new SpriteSheet(dummy, 0, 0, 1, 4, 16);
+    public static SpriteSheet dummy_right = new SpriteSheet(dummy, 1, 0, 1, 4, 16);
+    public static SpriteSheet dummy_down = new SpriteSheet(dummy, 2, 0, 1, 4, 16);
+    public static SpriteSheet dummy_left = new SpriteSheet(dummy, 3, 0, 1, 4, 16);
 
     private Sprite[] sprites;
 

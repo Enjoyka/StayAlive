@@ -1,5 +1,6 @@
 package level;
 
+import entity.mob.Dummy;
 import level.tile.Tile;
 
 import javax.imageio.ImageIO;
@@ -23,6 +24,7 @@ public class SpawnLevel extends Level {
             e.printStackTrace();
             System.out.println("Exception! Could not load Level file!");
         }
+        add(new Dummy(5, 5));
     }
 
     protected void generateLevel() {

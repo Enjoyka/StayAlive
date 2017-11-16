@@ -4,6 +4,7 @@ import entity.Entity;
 import entity.particle.Particle;
 import entity.projectile.Projectile;
 import entity.projectile.WizardProjectile;
+import graphics.Screen;
 import graphics.Sprite;
 
 import java.util.ArrayList;
@@ -11,9 +12,14 @@ import java.util.List;
 
 public abstract class Mob extends Entity {
     protected Sprite sprite;
-    protected int dir = 0;
     protected boolean moving = false;
     protected boolean walking = false;
+
+    protected enum Direction {
+        UP, DOWN, LEFT, RIGHT
+    }
+
+    protected Direction dir;
 
     public void move(int xa, int ya) {
         if (xa != 0 && ya != 0) {
@@ -22,10 +28,10 @@ public abstract class Mob extends Entity {
             return;
         }
 
-        if (xa > 0) dir = 1; //right
-        if (xa < 0) dir = 3; //left
-        if (ya > 0) dir = 2; //down
-        if (ya < 0) dir = 0; //up
+        if (xa > 0) dir = Direction.RIGHT;
+        if (xa < 0) dir = Direction.LEFT;
+        if (ya > 0) dir = Direction.DOWN;
+        if (ya < 0) dir = Direction.UP;
 
         if (!collision(xa, ya)) {
             y += ya;
@@ -33,8 +39,9 @@ public abstract class Mob extends Entity {
         }
     }
 
-    public void update() {
-    }
+    public abstract void update();
+
+    public abstract void render(Screen screen);
 
     protected void shoot(int x, int y, double dir) {
         Projectile p = new WizardProjectile(x, y, dir);
@@ -49,8 +56,5 @@ public abstract class Mob extends Entity {
             if (level.getTile(xt, yt).solid()) solid = true;
         }
         return solid;
-    }
-
-    public void render() {
     }
 }

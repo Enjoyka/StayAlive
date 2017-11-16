@@ -33,6 +33,8 @@ public class Sprite {
     public static Sprite player_left1 = new Sprite(16, 3, 13, SpriteSheet.tiles);
     public static Sprite player_left2 = new Sprite(16, 3, 15, SpriteSheet.tiles);
 
+    public static Sprite dummy = new Sprite(16, 0, 0, SpriteSheet.dummy_down);
+
     //Projectile sprites here:
     public static Sprite projectile_wizard = new Sprite(16, 0, 0, SpriteSheet.projectile_wizard);
 
@@ -95,9 +97,9 @@ public class Sprite {
     }
 
     private void load() {
-        for (int y = 0; y < SIZE; y++) {
-            for (int x = 0; x < SIZE; x++) {
-                pixels[x + y * SIZE] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.SIZE];
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                pixels[x + y * width] = sheet.pixels[(x + this.x) + (y + this.y) * sheet.WIDTH];
             }
         }
     }

@@ -38,7 +38,7 @@ public class Player extends Mob {
         fireRate = WizardProjectile.FIRE_RATE;
     }
 
-    public void update() {
+    public void     update() {
         if (walking) animatedSprite.update();
         else animatedSprite.setFrame(0);
         if (fireRate > 0) fireRate--;
@@ -93,50 +93,7 @@ public class Player extends Mob {
     }
 
     public void render(Screen screen) {
-        if (dir == 0) {
-            sprite = Sprite.player_forward;
-            if (walking) {
-                if (animate % 20 > 10) {
-                    sprite = Sprite.player_forward1;
-                } else {
-                    sprite = Sprite.player_forward2;
-                }
-            }
-        }
-
-        if (dir == 1) {
-            sprite = Sprite.player_right;
-            if (walking) {
-                if (animate % 20 > 10) {
-                    sprite = Sprite.player_right1;
-                } else {
-                    sprite = Sprite.player_right2;
-                }
-            }
-        }
-
-        if (dir == 2) {
-            sprite = Sprite.player_back;
-            if (walking) {
-                if (animate % 20 > 10) {
-                    sprite = Sprite.player_back1;
-                } else {
-                    sprite = Sprite.player_back2;
-                }
-            }
-        }
-
-        if (dir == 3) {
-            sprite = Sprite.player_left;
-            if (walking) {
-                if (animate % 20 > 10) {
-                    sprite = Sprite.player_left1;
-                } else {
-                    sprite = Sprite.player_left2;
-                }
-            }
-        }
         sprite = animatedSprite.getSprite();
-        screen.renderPlayer(x, y, sprite);
+        screen.renderMob(x, y, sprite);
     }
 }
