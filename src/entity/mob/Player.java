@@ -54,19 +54,19 @@ public class Player extends Mob {
 
         if (input.up) {
             animatedSprite = up;
-            ya--;
+            ya -= 2;
         }
         if (input.down) {
             animatedSprite = down;
-            ya++;
+            ya += 2;
         }
         if (input.left) {
             animatedSprite = left;
-            xa--;
+            xa -= 2;
         }
         if (input.right) {
             animatedSprite = right;
-            xa++;
+            xa += 2;
         }
         if (xa != 0 || ya != 0) {
             move(xa, ya);
