@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Entity {
     private boolean removed = false;
-    protected int x, y;
+    protected double x, y;
     protected Sprite sprite;
     protected Level level;
     protected Random random = new Random();
@@ -17,6 +17,7 @@ public class Entity {
     }
 
     public void render(Screen screen) {
+        if (sprite != null) screen.renderSprite((int) x, (int) y, sprite, true);
     }
 
     public void remove() {
@@ -24,11 +25,11 @@ public class Entity {
         removed = true;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 

@@ -65,6 +65,6 @@ public class Dummy extends Mob {
 
     public void render(Screen screen) {
         sprite = animatedSprite.getSprite();
-        screen.renderMob(x, y, sprite);
+        screen.renderMob((int) x, (int) y, sprite);
     }
 }

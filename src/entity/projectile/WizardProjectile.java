@@ -8,7 +8,7 @@ import graphics.Sprite;
 public class WizardProjectile extends Projectile {
     public final static int FIRE_RATE = 15; // higher is slower
 
-    public WizardProjectile(int x, int y, double dir) {
+    public WizardProjectile(double x, double y, double dir) {
         super(x, y, dir);
         range = 100;
         speed = 4;
