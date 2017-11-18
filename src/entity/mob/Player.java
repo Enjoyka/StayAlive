@@ -1,5 +1,6 @@
 package entity.mob;
 
+import entity.Entity;
 import entity.projectile.Projectile;
 import entity.projectile.WizardProjectile;
 import game.Game;
@@ -9,6 +10,8 @@ import graphics.Sprite;
 import graphics.SpriteSheet;
 import input.Keyboard;
 import input.Mouse;
+
+import java.util.List;
 
 public class Player extends Mob {
     private Keyboard input;
@@ -38,7 +41,7 @@ public class Player extends Mob {
         fireRate = WizardProjectile.FIRE_RATE;
     }
 
-    public void     update() {
+    public void update() {
         if (walking) animatedSprite.update();
         else animatedSprite.setFrame(0);
         if (fireRate > 0) fireRate--;

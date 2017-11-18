@@ -1,6 +1,8 @@
 package graphics;
 
 
+import entity.mob.Chaser;
+import entity.mob.Mob;
 import entity.projectile.Projectile;
 import level.tile.Tile;
 
@@ -94,6 +96,22 @@ public class Screen {
             }
         }
     }
+
+//    public void renderMob(int xp, int yp, Mob mob) {
+//        xp -= xOffset;
+//        yp -= yOffset;
+//        for (int y = 0; y < 16; y++) {
+//            int ya = y + yp;
+//            for (int x = 0; x < 16; x++) {
+//                int xa = x + xp;
+//                if (xa < -16 || xa >= width || ya < 0 || ya >= height) break;
+//                if (xa < 0) xa = 0;
+//                int color = mob.getSprite().pixels[x + y * 16];
+//                if ((mob instanceof Chaser) && color == 0xff5E0013) color = 0xffFF8000;
+//                if (color != 0xFFFFFFFF) pixels[xa + ya * width] = color;
+//            }
+//        }
+//    }
 
     public void renderMob(int xp, int yp, Sprite sprite) {
         xp -= xOffset;

@@ -1,5 +1,6 @@
 package level;
 
+import entity.mob.Chaser;
 import entity.mob.Dummy;
 import level.tile.Tile;
 
@@ -24,7 +25,9 @@ public class SpawnLevel extends Level {
             e.printStackTrace();
             System.out.println("Exception! Could not load Level file!");
         }
+
         add(new Dummy(5, 5));
+        add(new Chaser(3, 3));
     }
 
     protected void generateLevel() {
