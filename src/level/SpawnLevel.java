@@ -2,6 +2,7 @@ package level;
 
 import entity.mob.Chaser;
 import entity.mob.Dummy;
+import entity.mob.Shooter;
 import entity.mob.Star;
 import level.tile.Tile;
 
@@ -28,8 +29,10 @@ public class SpawnLevel extends Level {
         }
 
         add(new Dummy(3, 3));
-        add(new Chaser(4, 4));
-        add(new Star(5,5));
+        //add(new Chaser(4, 4));
+        //add(new Star(5,5));
+        add(new Shooter(3,6));
+        add(new Shooter(12,6));
     }
 
     protected void generateLevel() {
