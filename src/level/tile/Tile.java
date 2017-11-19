@@ -4,7 +4,6 @@ import graphics.Screen;
 import graphics.Sprite;
 
 public class Tile {
-    public int x, y;
     public Sprite sprite;
 
     public static Tile grass = new GrassTile(Sprite.grass);
