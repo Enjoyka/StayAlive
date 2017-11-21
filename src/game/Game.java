@@ -2,8 +2,6 @@ package game;
 
 import entity.mob.Player;
 import graphics.Screen;
-import graphics.Sprite;
-import graphics.SpriteSheet;
 import input.Keyboard;
 import input.Mouse;
 import level.Level;

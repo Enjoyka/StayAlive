@@ -7,8 +7,10 @@ import java.io.IOException;
 
 public class SpriteSheet {
     private  String path;
+    private int width, height;
+
     public final int SIZE;
-    public final int WIDTH, HEIGHT;
+    public final int SPRITE_WIDTH, SPRITE_HEIGHT;
     public int[] pixels;
 
     public static SpriteSheet tiles = new SpriteSheet("D:\\Work\\IdeaProjects\\StayAlive\\res\\textures\\sheets\\spritesheet.png", 256);
@@ -36,14 +38,14 @@ public class SpriteSheet {
         int h = height * spriteSize;
         if (width == height) SIZE = width;
         else SIZE = -1;
-        WIDTH = w;
-        HEIGHT = h;
+        SPRITE_WIDTH = w;
+        SPRITE_HEIGHT = h;
         pixels = new int[w * h];
         for (int y0 = 0; y0 < h; y0++) {
             int yp = yy + y0;
             for (int x0 = 0; x0 < w; x0++) {
                 int xp = xx + x0;
-                pixels[x0 + y0 * w] = sheet.pixels[xp + yp * sheet.WIDTH];
+                pixels[x0 + y0 * w] = sheet.pixels[xp + yp * sheet.SPRITE_WIDTH];
             }
         }
         int frame = 0;
@@ -53,7 +55,7 @@ public class SpriteSheet {
                 int[] spritePixels = new int[spriteSize * spriteSize];
                 for (int y0 = 0; y0 < spriteSize; y0++) {
                     for (int x0 = 0; x0 < spriteSize; x0++) {
-                        spritePixels[x0 + y0 * spriteSize] = pixels[(x0 + xa * spriteSize) + (y0 + ya * spriteSize) * WIDTH];
+                        spritePixels[x0 + y0 * spriteSize] = pixels[(x0 + xa * spriteSize) + (y0 + ya * spriteSize) * SPRITE_WIDTH];
                     }
                 }
                 Sprite sprite = new Sprite(spritePixels, spriteSize, spriteSize);
@@ -65,8 +67,8 @@ public class SpriteSheet {
     public SpriteSheet(String path, int size) {
         this.path = path;
         this.SIZE = size;
-        WIDTH = size;
-        HEIGHT = size;
+        SPRITE_WIDTH = size;
+        SPRITE_HEIGHT = size;
         pixels = new int[SIZE * SIZE];
         load();
     }
@@ -74,9 +76,9 @@ public class SpriteSheet {
     public SpriteSheet(String path, int width, int height) {
         this.path = path;
         SIZE = -1;
-        WIDTH = width;
-        HEIGHT = height;
-        pixels = new int[WIDTH * HEIGHT];
+        SPRITE_WIDTH = width;
+        SPRITE_HEIGHT = height;
+        pixels = new int[SPRITE_WIDTH * SPRITE_HEIGHT];
         load();
     }
 
@@ -84,14 +86,30 @@ public class SpriteSheet {
         return sprites;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int[] getPixels() {
+        return pixels;
+    }
+
     private void load() {
         try {
+            System.out.print("Trying to load: " + path + "...");
             BufferedImage image = ImageIO.read(new FileInputStream(path));
-            int w = image.getWidth();
-            int h = image.getHeight();
-            image.getRGB(0, 0, w, h, pixels, 0 , w);
+            System.out.println(" Succeeded!");
+            width = image.getWidth();
+            height = image.getHeight();
+            pixels = new int[width * height]; // btw this line mb shouldn't exist, idk, but i just leave here
+            image.getRGB(0, 0, width, height, pixels, 0 , width);
         } catch (IOException e) {
             e.printStackTrace();
+            System.err.println(" Failed!");
         }
     }
 }

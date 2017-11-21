@@ -1,21 +1,21 @@
 package graphics;
 
-
-import entity.mob.Chaser;
-import entity.mob.Mob;
 import entity.projectile.Projectile;
 import level.tile.Tile;
 
 import java.util.Random;
 
 public class Screen {
+    private final int ALPHA_COLOR = 0xFFFFFFFF;
+    public final int MAP_SIZE = 8;
+    public final int MAP_SIZE_MASK = MAP_SIZE - 1;
+
     public int width;
     public int height;
     public int xOffset, yOffset;
-    public final int MAP_SIZE = 8;
-    public final int MAP_SIZE_MASK = MAP_SIZE - 1;
     public int[] pixels;
     public int[] tiles = new int[MAP_SIZE * MAP_SIZE];
+
 
     private Random random = new Random();
 
@@ -42,12 +42,29 @@ public class Screen {
             yp -= yOffset;
         }
 
-        for (int y = 0; y < sheet.HEIGHT; y++) {
+        for (int y = 0; y < sheet.SPRITE_HEIGHT; y++) {
             int ya = y + yp;
-            for (int x = 0; x < sheet.WIDTH; x++) {
+            for (int x = 0; x < sheet.SPRITE_WIDTH; x++) {
                 int xa = x + xp;
                 if (xa < 0 || xa >= width || ya < 0 || ya >= height) continue;
-                pixels[xa + ya * width] = sheet.pixels[x + y * sheet.WIDTH];
+                pixels[xa + ya * width] = sheet.pixels[x + y * sheet.SPRITE_WIDTH];
+            }
+        }
+    }
+
+    public void renderTextCharacter(int xp, int yp, Sprite sprite, int col, boolean fixed) {
+        if (fixed) {
+            xp -= xOffset;
+            yp -= yOffset;
+        }
+
+        for (int y = 0; y < sprite.getHeight(); y++) {
+            int ya = y + yp;
+            for (int x = 0; x < sprite.getHeight(); x++) {
+                int xa = x + xp;
+                if (xa < 0 || xa >= width || ya < 0 || ya >= height) continue;
+                int color = sprite.pixels[x + y * sprite.getWidth()];
+                if (color != ALPHA_COLOR) pixels[xa + ya * width] = col;
             }
         }
     }
@@ -63,7 +80,8 @@ public class Screen {
             for (int x = 0; x < sprite.getHeight(); x++) {
                 int xa = x + xp;
                 if (xa < 0 || xa >= width || ya < 0 || ya >= height) continue;
-                pixels[xa + ya * width] = sprite.pixels[x + y * sprite.getWidth()];
+                int color = sprite.pixels[x + y * sprite.getWidth()];
+                if (color != ALPHA_COLOR) pixels[xa + ya * width] = color;
             }
         }
     }
@@ -92,7 +110,22 @@ public class Screen {
                 if (xa < -p.getSpriteSize() || xa >= width || ya < 0 || ya >= height) break;
                 if (xa < 0) xa = 0;
                 int color = p.getSprite().pixels[x + y * p.getSprite().SIZE];
-                if (color != 0xFFFFFFFF) pixels[xa + ya * width] = color;
+                if (color != ALPHA_COLOR) pixels[xa + ya * width] = color;
+            }
+        }
+    }
+
+    public void renderMob(int xp, int yp, Sprite sprite) {
+        xp -= xOffset;
+        yp -= yOffset;
+        for (int y = 0; y < 16; y++) {
+            int ya = y + yp;
+            for (int x = 0; x < 16; x++) {
+                int xa = x + xp;
+                if (xa < -16 || xa >= width || ya < 0 || ya >= height) break;
+                if (xa < 0) xa = 0;
+                int color = sprite.pixels[x + y * 16];
+                if (color != ALPHA_COLOR) pixels[xa + ya * width] = color;
             }
         }
     }
@@ -108,25 +141,30 @@ public class Screen {
 //                if (xa < 0) xa = 0;
 //                int color = mob.getSprite().pixels[x + y * 16];
 //                if ((mob instanceof Chaser) && color == 0xff5E0013) color = 0xffFF8000;
-//                if (color != 0xFFFFFFFF) pixels[xa + ya * width] = color;
+//                if (color != ALPHA_COLOR) pixels[xa + ya * width] = color;
 //            }
 //        }
 //    }
-
-    public void renderMob(int xp, int yp, Sprite sprite) {
-        xp -= xOffset;
-        yp -= yOffset;
-        for (int y = 0; y < 16; y++) {
-            int ya = y + yp;
-            for (int x = 0; x < 16; x++) {
-                int xa = x + xp;
-                if (xa < -16 || xa >= width || ya < 0 || ya >= height) break;
-                if (xa < 0) xa = 0;
-                int color = sprite.pixels[x + y * 16];
-                if (color != 0xFFFFFFFF) pixels[xa + ya * width] = color;
-            }
-        }
-    }
+//
+//    public void drawRect(int xp, int yp, int width, int height, int color, boolean fixed) {
+//        if (fixed) {
+//            xp -= xOffset;
+//            yp -= yOffset;
+//        }
+//
+//        for (int x = xp; x < xp + width; x++) {
+//            if (x < 0 | x >= this.width || yp >= this.height) continue;
+//            if (yp > 0) pixels[x + xp * this.width] = color;
+//            if (yp + height >= this.height) continue;
+//            if (yp + height > 0) pixels[x + (yp + height) * this.width] = color;
+//        }
+//        for (int y = yp; y <= yp + height; y++) {
+//            if (xp >= this.width || y < 0 || y >= this.height) continue;
+//            if (xp > 0) pixels[xp + y * this.width] = color;
+//            if (xp + width >= this.width) continue;
+//            if (xp + width > 0) pixels[(xp + width) + y * this.width] = color;
+//        }
+//    }
 
     public void setOffset(int xOffset, int yOffset) {
         this.xOffset = xOffset;
