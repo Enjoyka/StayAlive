@@ -8,10 +8,12 @@ import graphics.AnimatedSprites;
 import graphics.Screen;
 import graphics.Sprite;
 import graphics.SpriteSheet;
+import graphics.ui.ManagerUI;
+import graphics.ui.UILabel;
+import graphics.ui.UIPanel;
 import input.Keyboard;
 import input.Mouse;
-
-import java.util.List;
+import util.Vector2i;
 
 public class Player extends Mob {
     private Keyboard input;
@@ -27,6 +29,8 @@ public class Player extends Mob {
 
     private AnimatedSprites animatedSprite = down;
 
+    private ManagerUI ui;
+
     public Player(Keyboard input) {
         this.input = input;
         sprite = Sprite.player_forward;
@@ -39,6 +43,10 @@ public class Player extends Mob {
         this.input = input;
         sprite = Sprite.player_forward;
         fireRate = WizardProjectile.FIRE_RATE;
+        ui = Game.getManagerUI();
+        UIPanel panel = new UIPanel(new Vector2i((300 - 80) * 3, 0), new Vector2i(80 * 3, 168 * 3));
+        ui.addPanel(panel);
+        panel.addComponent(new UILabel(new Vector2i(15, 15), "Leave me here").setColor(0xFF0000));
     }
 
     public void update() {

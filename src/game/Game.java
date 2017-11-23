@@ -2,6 +2,7 @@ package game;
 
 import entity.mob.Player;
 import graphics.Screen;
+import graphics.ui.ManagerUI;
 import input.Keyboard;
 import input.Mouse;
 import level.Level;
@@ -29,6 +30,7 @@ public class Game extends Canvas implements Runnable {
     private Level level;
     private Player player;
     private Screen screen;
+    private static ManagerUI managerUI;
 
     private boolean running = false;
 
@@ -41,6 +43,7 @@ public class Game extends Canvas implements Runnable {
 
         icon = new ImageIcon("D:\\Work\\IdeaProjects\\StayAlive\\res\\icon.png");
         screen = new Screen(width, height);
+        managerUI = new ManagerUI();
         frame = new JFrame();
         key = new Keyboard();
         level = new SpawnLevel("D:\\Work\\IdeaProjects\\StayAlive\\res\\levels\\level.png");
@@ -60,6 +63,10 @@ public class Game extends Canvas implements Runnable {
 
     public static int getWindowHeight() {
         return height * scale;
+    }
+
+    public static ManagerUI getManagerUI() {
+        return managerUI;
     }
 
     public synchronized void start() {
@@ -112,6 +119,7 @@ public class Game extends Canvas implements Runnable {
     public void update() {
         key.update();
         level.update();
+        managerUI.update();
     }
 
     public void render() {
@@ -125,6 +133,7 @@ public class Game extends Canvas implements Runnable {
         double xScroll = player.getX() - screen.width / 2;
         double yScroll = player.getY() - screen.height / 2;
         level.render((int) xScroll, (int) yScroll, screen);
+//        managerUI.render(screen);
 
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = screen.pixels[i];
@@ -132,6 +141,7 @@ public class Game extends Canvas implements Runnable {
 
         Graphics g = bs.getDrawGraphics();
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+        managerUI.render(g);
         g.dispose();
         bs.show();
     }
