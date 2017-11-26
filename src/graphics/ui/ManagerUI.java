@@ -1,7 +1,5 @@
 package graphics.ui;
 
-import graphics.Screen;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;

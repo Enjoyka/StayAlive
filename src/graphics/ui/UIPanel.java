@@ -1,25 +1,24 @@
 package graphics.ui;
 
-import graphics.Screen;
-import graphics.Sprite;
 import util.Vector2i;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UIPanel {
+public class UIPanel extends UIComponent {
     private List<UIComponent> components = new ArrayList<UIComponent>();
-    private Vector2i position, size;
-    private Color color;
+    private Vector2i size;
 
     public UIPanel(Vector2i position, Vector2i size) {
+        super(position);
         this.position = position;
         this.size = size;
-        color = new Color(0x7F7F7F);
+        color = new Color(0);
     }
 
     public void addComponent(UIComponent component) {
+        component.init(this);
         components.add(component);
     }
 

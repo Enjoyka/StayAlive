@@ -48,7 +48,7 @@ public class Game extends Canvas implements Runnable {
         key = new Keyboard();
         level = new SpawnLevel("D:\\Work\\IdeaProjects\\StayAlive\\res\\levels\\level.png");
         TileCoordinate playerSpawn = new TileCoordinate(10, 10);
-        player = new Player(playerSpawn.x(), playerSpawn.y(), key);
+        player = new Player("Player", playerSpawn.x(), playerSpawn.y(), key);
         level.add(player);
 
         Mouse mouse = new Mouse();
@@ -133,7 +133,6 @@ public class Game extends Canvas implements Runnable {
         double xScroll = player.getX() - screen.width / 2;
         double yScroll = player.getY() - screen.height / 2;
         level.render((int) xScroll, (int) yScroll, screen);
-//        managerUI.render(screen);
 
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = screen.pixels[i];
