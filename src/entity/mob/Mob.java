@@ -8,9 +8,11 @@ import graphics.Sprite;
 
 public abstract class Mob extends Entity {
     protected Sprite sprite;
+
     protected boolean moving = false;
     protected boolean walking = false;
 
+    protected int spriteSize;
     protected int health;
     protected int mana;
 
@@ -66,6 +68,10 @@ public abstract class Mob extends Entity {
         return 1;
     }
 
+    public int getSpriteSize() {
+        return spriteSize;
+    }
+
     public abstract void update();
 
     public abstract void render(Screen screen);
@@ -78,8 +84,8 @@ public abstract class Mob extends Entity {
     private boolean collision(double xa, double ya) {
         boolean solid = false;
         for (int c = 0; c < 4; c++) {
-            double xt = ((x + xa) - c % 2 * 10 + 5) / 16; // in future try change this lines of code,
-            double yt = ((y + ya) - c / 2 * 10 + 5) / 16; // to effective collisions (default 16)
+            double xt = ((x + xa) - c % 2 * 10 + 5) / 16;
+            double yt = ((y + ya) - c / 2 * 10 + 5) / 16;
             int ix = (int) Math.ceil(xt);
             int iy = (int) Math.ceil(yt);
             if (c % 2 == 0) ix = (int) Math.floor(xt);

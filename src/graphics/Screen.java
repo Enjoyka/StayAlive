@@ -16,7 +16,6 @@ public class Screen {
     public int[] pixels;
     public int[] tiles = new int[MAP_SIZE * MAP_SIZE];
 
-
     private Random random = new Random();
 
     public Screen(int width, int height) {
@@ -31,9 +30,8 @@ public class Screen {
     }
 
     public void clear() {
-        for (int i = 0; i < pixels.length; i++) {
+        for (int i = 0; i < pixels.length; i++)
             pixels[i] = 0;
-        }
     }
 
     public void renderSheet(int xp, int yp, SpriteSheet sheet, boolean fixed) {
@@ -129,22 +127,6 @@ public class Screen {
             }
         }
     }
-
-//    public void renderMob(int xp, int yp, Mob mob) {
-//        xp -= xOffset;
-//        yp -= yOffset;
-//        for (int y = 0; y < 16; y++) {
-//            int ya = y + yp;
-//            for (int x = 0; x < 16; x++) {
-//                int xa = x + xp;
-//                if (xa < -16 || xa >= width || ya < 0 || ya >= height) break;
-//                if (xa < 0) xa = 0;
-//                int color = mob.getSprite().pixels[x + y * 16];
-//                if ((mob instanceof Chaser) && color == 0xff5E0013) color = 0xffFF8000;
-//                if (color != ALPHA_COLOR) pixels[xa + ya * width] = color;
-//            }
-//        }
-//    }
 
     public void drawRect(int xp, int yp, int width, int height, int color, boolean fixed) {
         if (fixed) {

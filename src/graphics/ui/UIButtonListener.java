@@ -1,7 +1,6 @@
 package graphics.ui;
 
 public class UIButtonListener {
-    //pick better colors for all UI
     public void entered(UIButton button) {
         button.setColor(0x2A2A2A);
     }

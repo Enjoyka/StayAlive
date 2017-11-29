@@ -1,8 +1,9 @@
 package graphics;
 
 public class AnimatedSprites extends Sprite {
-    private int frame = 0;
     private Sprite sprite;
+
+    private int frame = 0;
     private int rate = 0;
     private int lenght = -1;
     private int time = 0;
@@ -17,8 +18,10 @@ public class AnimatedSprites extends Sprite {
     public void update() {
         time++;
         if (time % lenght == 0) {
-            if (frame >= lenght - 1) frame = 0;
-            else frame++;
+            if (frame >= lenght - 1)
+                frame = 0;
+            else
+                frame++;
             sprite = sheet.getSprites()[frame];
         }
     }

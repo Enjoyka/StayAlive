@@ -17,9 +17,10 @@ public class Star extends Mob {
 
     private AnimatedSprites animatedSprite = down;
 
+    private List<Node> path = null;
+
     private double xa = 0;
     private double ya = 0;
-    private List<Node> path = null;
     private int time = 0;
 
     public Star(int x, int y) {
@@ -31,10 +32,13 @@ public class Star extends Mob {
     private void move() {
         xa = 0;
         ya = 0;
+
         int px = (int) level.getPlayerAt(0).getX();
         int py = (int) level.getPlayerAt(0).getY();
+
         Vector2i start = new Vector2i((int) getX() >> 4, (int) getY() >> 4);
         Vector2i destination = new Vector2i(px >> 4, py >> 4);
+
         if (time % 60 == 0) path = level.findPath(start, destination);
         if (path != null) {
             Vector2i vec = path.get(path.size() - 1).tile;
@@ -43,6 +47,7 @@ public class Star extends Mob {
             if (y < vec.getY() << 4) ya++;
             if (y > vec.getY() << 4) ya--;
         }
+
         if (xa != 0 || ya != 0) {
             move(xa, ya);
             walking = true;

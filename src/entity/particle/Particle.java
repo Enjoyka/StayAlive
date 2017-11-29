@@ -19,17 +19,20 @@ public class Particle extends Entity {
         this.xx = x;
         this.yy = y;
         this.life = life + (random.nextInt(20) - 10);
-        sprite = Sprite.particle_normal;
-
         this.xa = random.nextGaussian();
         this.ya = random.nextGaussian();
         this.zz = random.nextFloat() + 5.0;
+
+        sprite = Sprite.particle_normal;
     }
 
     public void update() {
         time++;
-        if (time >= 7400) time = 0;
-        if (time > life) remove();
+        if (time >= 7400)
+            time = 0;
+        if (time > life)
+            remove();
+
         za -= 0.1;
 
         if (zz < 0) {

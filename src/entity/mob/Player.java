@@ -10,22 +10,20 @@ import graphics.SpriteSheet;
 import graphics.ui.*;
 import input.Keyboard;
 import input.Mouse;
-import util.ImageUtils;
 import util.Vector2i;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class Player extends Mob {
     private BufferedImage home;
     private Keyboard input;
     private Sprite sprite;
     private String name;
+
     private int animate = 0;
     private int fireRate = 0;
+
     private boolean walking = false;
 
     private AnimatedSprites up = new AnimatedSprites(SpriteSheet.player_up, 16, 16, 4);
@@ -61,6 +59,7 @@ public class Player extends Mob {
         health = 100;
         mana = 1000;
 
+        // User Interface
         ui = Game.getManagerUI();
         UIPanel panel = (UIPanel) new UIPanel(new Vector2i((300 - 80) * 3, 0), new Vector2i(85 * 3, 168 * 3)).setColor(0x4A4A4A);
         ui.addPanel(panel);
@@ -72,7 +71,7 @@ public class Player extends Mob {
         nameLabel.dropShadow = true;
         panel.addComponent(nameLabel);
 
-        //Level
+        // Level
         uiLevelBar = new UIProgressBar(new Vector2i(10, 255), new Vector2i(85 * 3 - 25, 20));
         uiLevelBar.setColor(0x4AFF4A);
         panel.addComponent(uiLevelBar);
@@ -101,38 +100,6 @@ public class Player extends Mob {
         mpLabel.setColor(0xFFFFFF);
         mpLabel.setFont(new Font("Arial", Font.BOLD, 20));
         panel.addComponent(mpLabel);
-
-//      UI Buttons and other stuff. change later. make image bg transparent, not white. pick better color and change UI
-//
-//        try {
-//            home = ImageIO.read(new File("D:\\Work\\IdeaProjects\\StayAlive\\res\\icons\\home.png"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        UIButton imageButton = new UIButton(new Vector2i(160, 250), home, new UIActionListener() {
-//            public void perform() {
-//                System.exit(0);
-//            }
-//        });
-//        imageButton.setButtonListener(new UIButtonListener() {
-//            public void entered(UIButton button) {
-//                button.setImage(ImageUtils.changeBrightness(home, -100));
-//            }
-//
-//            public void exited(UIButton button) {
-//                button.setImage(home);
-//            }
-//
-//            public void pressed(UIButton button) {
-//                button.setImage(ImageUtils.changeBrightness(home, 100));
-//            }
-//
-//            public void released(UIButton button) {
-//                button.setImage(home);
-//            }
-//        });
-//        panel.addComponent(imageButton);
     }
 
     public String getName() {
@@ -140,9 +107,13 @@ public class Player extends Mob {
     }
 
     public void update() {
-        if (walking) animatedSprite.update();
-        else animatedSprite.setFrame(0);
+        if (walking)
+            animatedSprite.update();
+        else
+            animatedSprite.setFrame(0);
+
         if (fireRate > 0) fireRate--;
+
         double xa = 0, ya = 0;
         double speed = 1;
 
@@ -188,8 +159,7 @@ public class Player extends Mob {
     }
 
     private void updateShooting() {
-        if (Mouse.getX() > 660)
-            return;
+        if (Mouse.getX() > 660) return;
         if (Mouse.getButton() == 1 && fireRate <= 0) {
             double dx = Mouse.getX() - Game.getWindowWidth() / 2;
             double dy = Mouse.getY() - Game.getWindowHeight() / 2;

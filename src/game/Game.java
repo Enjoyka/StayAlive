@@ -21,8 +21,9 @@ public class Game extends Canvas implements Runnable {
     private static int width = 300;
     private static int height = width / 16 * 9;
     private static int scale = 3;
-    private static String title = "Stay Alive";
+    private static String TITLE = "Stay Alive";
     private static ImageIcon icon;
+    private static ManagerUI managerUI;
 
     private Thread thread;
     private JFrame frame;
@@ -30,7 +31,6 @@ public class Game extends Canvas implements Runnable {
     private Level level;
     private Player player;
     private Screen screen;
-    private static ManagerUI managerUI;
 
     private boolean running = false;
 
@@ -41,7 +41,7 @@ public class Game extends Canvas implements Runnable {
         Dimension size = new Dimension(width * scale, height * scale);
         setPreferredSize(size);
 
-        icon = new ImageIcon("D:\\Work\\IdeaProjects\\StayAlive\\res\\icon.png");
+        icon = new ImageIcon("D:\\Work\\IdeaProjects\\StayAlive\\res\\icons\\icon.png");
         screen = new Screen(width, height);
         managerUI = new ManagerUI();
         frame = new JFrame();
@@ -108,7 +108,7 @@ public class Game extends Canvas implements Runnable {
 
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                frame.setTitle(title + " | " + updates + " updates, " + frames + " fps");
+                frame.setTitle(TITLE + " | " + updates + " updates, " + frames + " fps");
                 updates = 0;
                 frames = 0;
             }
@@ -134,9 +134,8 @@ public class Game extends Canvas implements Runnable {
         double yScroll = player.getY() - screen.height / 2;
         level.render((int) xScroll, (int) yScroll, screen);
 
-        for (int i = 0; i < pixels.length; i++) {
+        for (int i = 0; i < pixels.length; i++)
             pixels[i] = screen.pixels[i];
-        }
 
         Graphics g = bs.getDrawGraphics();
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
@@ -148,7 +147,7 @@ public class Game extends Canvas implements Runnable {
     public static void main(String[] args) {
         Game game = new Game();
         game.frame.setIconImage(icon.getImage());
-        game.frame.setTitle(Game.title);
+        game.frame.setTitle(Game.TITLE);
         game.frame.add(game);
         game.frame.pack();
         game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

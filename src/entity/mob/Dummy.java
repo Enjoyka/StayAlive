@@ -2,7 +2,6 @@ package entity.mob;
 
 import graphics.AnimatedSprites;
 import graphics.Screen;
-import graphics.Sprite;
 import graphics.SpriteSheet;
 
 public class Dummy extends Mob {
@@ -14,6 +13,7 @@ public class Dummy extends Mob {
     private AnimatedSprites animatedSprite = down;
 
     private int time = 0;
+
     int xa = 0;
     int ya = 0;
 
@@ -21,6 +21,11 @@ public class Dummy extends Mob {
         this.x = x << 4;
         this.y = y << 4;
         sprite = down;
+
+        leftEdge = 4;
+        rightEdge = 4;
+        topEdge = spriteSize / 2;
+        bottomEdge = 0;
     }
 
     public void update() {

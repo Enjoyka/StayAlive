@@ -9,7 +9,7 @@ public abstract class Projectile extends Entity {
     protected final double xOrigin, yOrigin;
     protected double speed, range, damage;
     protected double x, y;
-    protected double nx, ny; //new x, new y
+    protected double nx, ny;
     protected double angle;
     protected double distance;
     protected Sprite sprite;
@@ -24,6 +24,14 @@ public abstract class Projectile extends Entity {
         this.y = y;
     }
 
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
     public Sprite getSprite() {
         return sprite;
     }
@@ -33,6 +41,5 @@ public abstract class Projectile extends Entity {
     }
 
     protected void move() {
-
     }
 }

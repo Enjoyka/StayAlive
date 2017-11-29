@@ -8,7 +8,6 @@ public class ManagerUI {
     private List<UIPanel> panels = new ArrayList<UIPanel>();
 
     public ManagerUI() {
-
     }
 
     public void addPanel(UIPanel panel) {

@@ -1,17 +1,16 @@
 package entity.projectile;
 
 import entity.spawner.ParticleSpawner;
-import entity.spawner.Spawner;
 import graphics.Screen;
 import graphics.Sprite;
 
 public class WizardProjectile extends Projectile {
-    public final static int FIRE_RATE = 15; // higher is slower
+    public final static int FIRE_RATE = 10; // higher is slower
 
     public WizardProjectile(double x, double y, double dir) {
         super(x, y, dir);
         range = 100;
-        speed = 4;
+        speed = 5;
         damage = 20;
         sprite = Sprite.rotate(Sprite.projectile_arrow, angle);
         nx = speed * Math.cos(angle);

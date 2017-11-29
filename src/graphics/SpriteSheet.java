@@ -7,22 +7,23 @@ import java.io.IOException;
 
 public class SpriteSheet {
     private  String path;
+
     private int width, height;
 
     public final int SIZE;
     public final int SPRITE_WIDTH, SPRITE_HEIGHT;
     public int[] pixels;
 
-    public static SpriteSheet tiles = new SpriteSheet("D:\\Work\\IdeaProjects\\StayAlive\\res\\textures\\sheets\\spritesheet.png", 256);
+    public static SpriteSheet tiles = new SpriteSheet("D:\\Work\\IdeaProjects\\StayAlive\\res\\textures\\sheets\\sprites\\spritesheet.png", 256);
     public static SpriteSheet projectile_wizard = new SpriteSheet("D:\\Work\\IdeaProjects\\StayAlive\\res\\textures\\sheets\\projectiles\\wizard.png", 48);
 
-    public static SpriteSheet player = new SpriteSheet("D:\\Work\\IdeaProjects\\StayAlive\\res\\textures\\sheets\\player_sheet.png", 64, 64);
+    public static SpriteSheet player = new SpriteSheet("D:\\Work\\IdeaProjects\\StayAlive\\res\\textures\\sheets\\mobs\\player_sheet.png", 64, 64);
     public static SpriteSheet player_up = new SpriteSheet(player, 0, 0, 1, 4, 16);
     public static SpriteSheet player_right = new SpriteSheet(player, 1, 0, 1, 4, 16);
     public static SpriteSheet player_down = new SpriteSheet(player, 2, 0, 1, 4, 16);
     public static SpriteSheet player_left = new SpriteSheet(player, 3, 0, 1, 4, 16);
 
-    public static SpriteSheet dummy = new SpriteSheet("D:\\Work\\IdeaProjects\\StayAlive\\res\\textures\\sheets\\player_sheet.png", 64, 64);
+    public static SpriteSheet dummy = new SpriteSheet("D:\\Work\\IdeaProjects\\StayAlive\\res\\textures\\sheets\\mobs\\dummy_sheet.png", 64, 64);
     //download sprites for dummy and create
     public static SpriteSheet dummy_up = new SpriteSheet(dummy, 0, 0, 1, 4, 16);
     public static SpriteSheet dummy_right = new SpriteSheet(dummy, 1, 0, 1, 4, 16);
@@ -36,8 +37,11 @@ public class SpriteSheet {
         int yy = y * spriteSize;
         int w = width * spriteSize;
         int h = height * spriteSize;
-        if (width == height) SIZE = width;
-        else SIZE = -1;
+        if (width == height)
+            SIZE = width;
+        else
+            SIZE = -1;
+
         SPRITE_WIDTH = w;
         SPRITE_HEIGHT = h;
         pixels = new int[w * h];
@@ -105,7 +109,7 @@ public class SpriteSheet {
             System.out.println(" Succeeded!");
             width = image.getWidth();
             height = image.getHeight();
-            pixels = new int[width * height]; // btw this line mb shouldn't exist, idk, but i just leave here
+            pixels = new int[width * height];
             image.getRGB(0, 0, width, height, pixels, 0 , width);
         } catch (IOException e) {
             e.printStackTrace();

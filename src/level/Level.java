@@ -1,6 +1,7 @@
 package level;
 
 import entity.Entity;
+import entity.mob.Mob;
 import entity.mob.Player;
 import entity.particle.Particle;
 import entity.projectile.Projectile;
@@ -8,19 +9,19 @@ import graphics.Screen;
 import level.tile.Tile;
 import util.Vector2i;
 
-import java.nio.file.Path;
 import java.util.*;
 
 public class Level {
     protected int width, height;
+    protected int tile_size;
     protected int[] tilesInt;
     protected int[] tiles;
-    protected int tile_size;
 
     private List<Entity> entities = new ArrayList<Entity>();
     private List<Projectile> projectiles = new ArrayList<Projectile>();
     private List<Particle> particles = new ArrayList<Particle>();
-    public List<Player> players = new ArrayList<Player>();
+    private List<Player> players = new ArrayList<Player>();
+    private List<Mob> mobs = new ArrayList<Mob>();
 
     private Comparator<Node> nodeSorter = new Comparator<Node>() {
         public int compare(Node n0, Node n1) {
@@ -43,11 +44,9 @@ public class Level {
     }
 
     protected void generateLevel() {
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
+        for (int y = 0; y < height; y++)
+            for (int x = 0; x < width; x++)
                 getTile(x, y);
-            }
-        }
         tile_size = 16;
     }
 
@@ -66,6 +65,9 @@ public class Level {
         for (int i = 0; i < players.size(); i++ )
             players.get(i).update();
 
+        for (int i = 0; i < mobs.size(); i++ )
+            mobs.get(i).update();
+
         remove();
     }
 
@@ -81,6 +83,9 @@ public class Level {
 
         for (int i = 0; i < players.size(); i++ )
             if (players.get(i).isRemoved()) players.remove(i);
+
+        for (int i = 0; i < mobs.size(); i++ )
+            if (mobs.get(i).isRemoved()) mobs.remove(i);
     }
 
     public List<Projectile> getProjectiles() {
@@ -107,11 +112,10 @@ public class Level {
         int y0 = yScroll >> 4;
         int y1 = (yScroll + screen.height + 16) >> 4;
 
-        for (int y = y0; y < y1; y++) {
-            for (int x = x0; x < x1; x++) {
+        for (int y = y0; y < y1; y++)
+            for (int x = x0; x < x1; x++)
                 getTile(x, y).render(x, y, screen);
-            }
-        }
+
         for (int i = 0; i < entities.size(); i++ )
             entities.get(i).render(screen);
 
@@ -123,19 +127,23 @@ public class Level {
 
         for (int i = 0; i < players.size(); i++ )
             players.get(i).render(screen);
+
+        for (int i = 0; i < mobs.size(); i++ )
+            mobs.get(i).render(screen);
     }
 
     public void add(Entity e) {
         e.init(this);
-        if (e instanceof Particle) {
+        if (e instanceof Particle)
             particles.add((Particle) e);
-        } else if(e instanceof Projectile) {
+        else if(e instanceof Projectile)
             projectiles.add((Projectile) e);
-        } else if (e instanceof Player) {
+        else if (e instanceof Player)
             players.add((Player) e);
-        } else {
+        else if (e instanceof Mob)
+            mobs.add((Mob) e);
+        else
             entities.add(e);
-        }
     }
 
     public List<Player> getPlayers() {
@@ -192,9 +200,9 @@ public class Level {
     }
 
     private boolean vecInList(List<Node> list, Vector2i vector) {
-        for (Node n : list) {
+        for (Node n : list)
             if (n.tile.equals(vector)) return true;
-        }
+
         return false;
     }
 

@@ -5,7 +5,6 @@ import graphics.AnimatedSprites;
 import graphics.Screen;
 import graphics.Sprite;
 import graphics.SpriteSheet;
-import util.Debug;
 import util.Vector2i;
 
 import java.util.List;
@@ -19,7 +18,8 @@ public class Shooter extends Mob {
     private AnimatedSprites animatedSprite = down;
 
     private int time = 0;
-    private int xa = 0, ya = 0;
+    private int xa = 0;
+    private int ya = 0;
 
     private Entity rand = null;
 
@@ -82,12 +82,13 @@ public class Shooter extends Mob {
             double dx = rand.getX() - x;
             double dy = rand.getY() - y;
             double dir = Math.atan2(dy, dx);
-            shoot(x, y, dir);
+            if (time % 30 == 1)
+                shoot(x, y, dir);
         }
     }
 
     private void shootClosest() {
-        List<Entity> entities = level.getEntities(this, 100);
+        List<Entity> entities = level.getEntities(this, 10);
         entities.add(level.getClientPlayer());
 
         double min = 0;

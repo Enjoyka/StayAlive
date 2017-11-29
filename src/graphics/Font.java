@@ -6,7 +6,6 @@ public class Font {
     private static String charIndex = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!?";
 
     public Font() {
-
     }
 
     public void render(int x, int y, String text, Screen screen) {
