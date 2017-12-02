@@ -15,6 +15,14 @@ public class Sprite {
     public static Sprite grass = new Sprite(16, 0, 1, SpriteSheet.tiles);
     public static Sprite flower = new Sprite(16, 1, 1, SpriteSheet.tiles);
     public static Sprite rock = new Sprite(16, 2, 0, SpriteSheet.tiles);
+    public static Sprite hedge = new Sprite(16 , 3 , 0, SpriteSheet.tiles);
+    public static Sprite sand = new Sprite(16 , 3 , 1, SpriteSheet.tiles);
+    public static Sprite floor = new Sprite(16 , 2 , 3, SpriteSheet.tiles);
+    public static Sprite broken_ground = new Sprite(16 , 1 , 1, SpriteSheet.tiles);
+    public static Sprite wall = new Sprite(16 , 2 , 0, SpriteSheet.tiles);
+    public static Sprite lava = new Sprite(16 , 4 , 1, SpriteSheet.tiles);
+    public static Sprite water = new Sprite(16 , 5 , 1, SpriteSheet.tiles);
+    public static Sprite ice = new Sprite(16 , 5 , 0, SpriteSheet.tiles);
     //mb make more sprites
 
     //Player sprites here:

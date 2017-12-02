@@ -8,6 +8,9 @@ import input.Mouse;
 import level.Level;
 import level.SpawnLevel;
 import level.TileCoordinate;
+import menu.MainMenu;
+import menu.Menu;
+import menu.PlayMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +24,8 @@ public class Game extends Canvas implements Runnable {
     private static int width = 300;
     private static int height = width / 16 * 9;
     private static int scale = 3;
-    private static String TITLE = "Stay Alive";
+    private static int framerate = 60;
+    private static String title = "Stay Alive";
     private static ImageIcon icon;
     private static ManagerUI managerUI;
 
@@ -32,6 +36,9 @@ public class Game extends Canvas implements Runnable {
     private Player player;
     private Screen screen;
 
+    public static Menu menu;
+
+    private int time = 0;
     private boolean running = false;
 
     private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -50,6 +57,7 @@ public class Game extends Canvas implements Runnable {
         TileCoordinate playerSpawn = new TileCoordinate(10, 10);
         player = new Player("Player", playerSpawn.x(), playerSpawn.y(), key);
         level.add(player);
+        menu = new MainMenu(key);
 
         Mouse mouse = new Mouse();
         addKeyListener(key);
@@ -88,7 +96,7 @@ public class Game extends Canvas implements Runnable {
     public void run() {
         long lastTime = System.nanoTime();
         long timer = System.currentTimeMillis();
-        final double ns = 1_000_000_000.0 / 60;
+        final double ns = 1_000_000_000.0 / (double) framerate;
         double delta = 0;
         int frames = 0;
         int updates = 0;
@@ -108,7 +116,7 @@ public class Game extends Canvas implements Runnable {
 
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                frame.setTitle(TITLE + " | " + updates + " updates, " + frames + " fps");
+                frame.setTitle(title + " | " + updates + " updates, " + frames + " fps");
                 updates = 0;
                 frames = 0;
             }
@@ -117,7 +125,10 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void update() {
+        time++;
+        if (time > 65536) time = 0;
         key.update();
+        if (menu != null) menu.update();
         level.update();
         managerUI.update();
     }
@@ -147,7 +158,7 @@ public class Game extends Canvas implements Runnable {
     public static void main(String[] args) {
         Game game = new Game();
         game.frame.setIconImage(icon.getImage());
-        game.frame.setTitle(Game.TITLE);
+        game.frame.setTitle(Game.title);
         game.frame.add(game);
         game.frame.pack();
         game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

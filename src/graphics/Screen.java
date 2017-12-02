@@ -3,6 +3,8 @@ package graphics;
 import entity.projectile.Projectile;
 import level.tile.Tile;
 
+import java.awt.*;
+import java.awt.Font;
 import java.util.Random;
 
 public class Screen {
@@ -17,6 +19,7 @@ public class Screen {
     public int[] tiles = new int[MAP_SIZE * MAP_SIZE];
 
     private Random random = new Random();
+    private Graphics g;
 
     public Screen(int width, int height) {
         this.width = width;
@@ -32,6 +35,10 @@ public class Screen {
     public void clear() {
         for (int i = 0; i < pixels.length; i++)
             pixels[i] = 0;
+    }
+
+    public void graphics(Graphics g) {
+        this.g = g;
     }
 
     public void renderSheet(int xp, int yp, SpriteSheet sheet, boolean fixed) {
@@ -146,6 +153,17 @@ public class Screen {
             if (xp + width >= this.width) continue;
             if (xp + width > 0) pixels[(xp + width) + y * this.width] = color;
         }
+    }
+
+    public void renderText(String text, int x, int y, int size, int style, int color) {
+        int r = (color & 0xff0000) >> 16;
+        int g = (color & 0xff00) >> 8;
+        int b = (color & 0xff);
+        Color c = new Color(r, g, b);
+        Font f = new Font("Arial", style, size);
+        this.g.setColor(c);
+        this.g.setFont(f);
+        this.g.drawString(text, x, y);
     }
 
     public void setOffset(int xOffset, int yOffset) {

@@ -251,6 +251,14 @@ public class Level {
         if (tiles[x + y * width] == Tile.GRASS_COLOR) return Tile.grass;
         if (tiles[x + y * width] == Tile.FLOWER_COLOR) return Tile.flower;
         if (tiles[x + y * width] == Tile.ROCK_COLOR) return Tile.rock;
+        if (tiles[x + y * width] == Tile.HEDGE_COLOR) return Tile.hedge;
+        if (tiles[x + y * width] == Tile.SAND_COLOR) return Tile.sand;
+        if (tiles[x + y * width] == Tile.FLOOR_COLOR) return Tile.floor;
+        if (tiles[x + y * width] == Tile.WALL_COLOR) return Tile.wall;
+        if (tiles[x + y * width] == Tile.BROKEN_GROUND_COLOR) return Tile.broken_ground;
+        if (tiles[x + y * width] == Tile.LAVA_COLOR) return Tile.lava;
+        if (tiles[x + y * width] == Tile.WATER_COLOR) return Tile.water;
+        if (tiles[x + y * width] == Tile.ICE_COLOR) return Tile.ice;
         return Tile.voidTile;
     }
 }
