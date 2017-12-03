@@ -33,16 +33,16 @@ public class SpawnLevel extends Level {
             e.printStackTrace();
             System.out.println("Exception! Could not load Level file!");
         }
-
-        for (int i = 0; i < DUMMY_NUMBER; i++) {
-            int x = random.nextInt(width);
-            int y = random.nextInt(height);
-            while (this.getTile(x, y).solid()) {
-                x = random.nextInt(width);
-                y = random.nextInt(height);
-            }
-            add(new Dummy(x, y));
-        }
+        add(new Dummy(9, 9));
+//        for (int i = 0; i < DUMMY_NUMBER; i++) {
+//            int x = random.nextInt(width);
+//            int y = random.nextInt(height);
+//            while (this.getTile(x, y).solid()) {
+//                x = random.nextInt(width);
+//                y = random.nextInt(height);
+//            }
+//            add(new Dummy(x, y));
+//        }
 //
 //        for (int i = 0; i < SHOOTER_NUMBER; i++) {
 //            int x = random.nextInt(width);

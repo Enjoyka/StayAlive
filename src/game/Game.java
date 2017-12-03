@@ -10,7 +10,6 @@ import level.SpawnLevel;
 import level.TileCoordinate;
 import menu.MainMenu;
 import menu.Menu;
-import menu.PlayMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -85,7 +84,6 @@ public class Game extends Canvas implements Runnable {
 
     public synchronized void stop() {
         running = false;
-
         try {
             thread.join();
         } catch (InterruptedException e) {
