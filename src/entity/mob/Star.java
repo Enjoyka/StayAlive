@@ -41,11 +41,13 @@ public class Star extends Mob {
 
         if (time % 60 == 0) path = level.findPath(start, destination);
         if (path != null) {
-            Vector2i vec = path.get(path.size() - 1).tile;
-            if (x < vec.getX() << 4) xa++;
-            if (x > vec.getX() << 4) xa--;
-            if (y < vec.getY() << 4) ya++;
-            if (y > vec.getY() << 4) ya--;
+            if (path.size() > 0) {
+                Vector2i vec = path.get(path.size() - 1).tile;
+                if (x < vec.getX() << 4) xa++;
+                if (x > vec.getX() << 4) xa--;
+                if (y < vec.getY() << 4) ya++;
+                if (y > vec.getY() << 4) ya--;
+            }
         }
 
         if (xa != 0 || ya != 0) {

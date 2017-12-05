@@ -3,7 +3,7 @@ package level.tile;
 import graphics.Screen;
 import graphics.Sprite;
 
-public class WaterTile extends  Tile {
+public class WaterTile extends Tile {
     public WaterTile(Sprite sprite) {
         super(sprite);
     }

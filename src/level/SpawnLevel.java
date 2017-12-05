@@ -3,6 +3,7 @@ package level;
 import entity.mob.Chaser;
 import entity.mob.Dummy;
 import entity.mob.Shooter;
+import entity.mob.Star;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -33,7 +34,9 @@ public class SpawnLevel extends Level {
             e.printStackTrace();
             System.out.println("Exception! Could not load Level file!");
         }
-        add(new Dummy(9, 9));
+        add(new Dummy(11, 11));
+        add(new Shooter(2, 2));
+
 //        for (int i = 0; i < DUMMY_NUMBER; i++) {
 //            int x = random.nextInt(width);
 //            int y = random.nextInt(height);

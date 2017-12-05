@@ -1,7 +1,7 @@
 package entity.mob;
 
 import entity.projectile.Projectile;
-import entity.projectile.WizardProjectile;
+import entity.projectile.FireballProjectile;
 import game.Game;
 import graphics.AnimatedSprites;
 import graphics.Screen;
@@ -23,6 +23,8 @@ public class Player extends Mob {
 
     private int animate = 0;
     private int fireRate = 0;
+    protected int playerHealth = 100;
+    protected int playerMana = 1000;
 
     private boolean walking = false;
 
@@ -38,11 +40,12 @@ public class Player extends Mob {
     private UIProgressBar uiManaBar;
     private UIProgressBar uiLevelBar;
 
+
     @Deprecated
     public Player(String name, Keyboard input) {
         this.name = name;
         this.input = input;
-        sprite = Sprite.player_forward;
+        sprite = Sprite.player;
         animatedSprite = down;
     }
 
@@ -52,12 +55,8 @@ public class Player extends Mob {
         this.y = y;
         this.input = input;
 
-        sprite = Sprite.player_forward;
-        fireRate = WizardProjectile.FIRE_RATE;
-
-        //player default attributes
-        health = 100;
-        mana = 1000;
+        sprite = Sprite.player;
+        fireRate = FireballProjectile.FIRE_RATE;
 
         // User Interface
         ui = Game.getManagerUI();
@@ -86,7 +85,7 @@ public class Player extends Mob {
         uiHealthBar.setColor(0xFF2B2B);
         panel.addComponent(uiHealthBar);
 
-        UILabel hpLabel = new UILabel(new Vector2i(uiHealthBar.position).add(new Vector2i(80, 17)), "HP: " + health);
+        UILabel hpLabel = new UILabel(new Vector2i(uiHealthBar.position).add(new Vector2i(80, 17)), "HP: " + playerHealth);
         hpLabel.setColor(0xFFFFFF);
         hpLabel.setFont(new Font("Arial", Font.BOLD, 20));
         panel.addComponent(hpLabel);
@@ -96,7 +95,7 @@ public class Player extends Mob {
         uiManaBar.setColor(0x4B4BFF);
         panel.addComponent(uiManaBar);
 
-        UILabel mpLabel = new UILabel(new Vector2i(uiManaBar.position).add(new Vector2i(80, 17)), "MP: " + mana);
+        UILabel mpLabel = new UILabel(new Vector2i(uiManaBar.position).add(new Vector2i(80, 17)), "MP: " + playerMana);
         mpLabel.setColor(0xFFFFFF);
         mpLabel.setFont(new Font("Arial", Font.BOLD, 20));
         panel.addComponent(mpLabel);
@@ -147,8 +146,8 @@ public class Player extends Mob {
         clear();
         updateShooting();
 
-        uiHealthBar.setProgress(health / 100.0);
-        uiManaBar.setProgress(mana / 1000.0);
+        uiHealthBar.setProgress(playerHealth / 100.0);
+        uiManaBar.setProgress(playerMana / 1000.0);
     }
 
     private void clear() {
@@ -158,6 +157,19 @@ public class Player extends Mob {
         }
     }
 
+    public void damagePlayer(int damage) {
+        if (playerHealth > 0)
+            playerHealth -= damage;
+        else if (playerHealth <= 0)
+            System.out.println("GAME OVER");
+        //make if player hp is 0 or lower - end game or smthng else
+    }
+
+    protected void shoot(double x, double y, double dir) {
+        Projectile p = new FireballProjectile(x, y, dir);
+        level.add(p);
+    }
+
     private void updateShooting() {
         if (Mouse.getX() > 660) return;
         if (Mouse.getButton() == 1 && fireRate <= 0) {
@@ -165,7 +177,7 @@ public class Player extends Mob {
             double dy = Mouse.getY() - Game.getWindowHeight() / 2;
             double dir = Math.atan2(dy, dx);
             shoot(x, y, dir);
-            fireRate = WizardProjectile.FIRE_RATE;
+            fireRate = FireballProjectile.FIRE_RATE;
         }
     }
 

@@ -1,4 +1,4 @@
-package Sound;
+package sound;
 
 import java.applet.Applet;
 import java.applet.AudioClip;

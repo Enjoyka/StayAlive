@@ -3,8 +3,8 @@ package level.tile;
 import graphics.Screen;
 import graphics.Sprite;
 
-public class BrokenGroundTile extends Tile {
-    public BrokenGroundTile(Sprite sprite) {
+public class WoodenFloorTile extends Tile {
+    public WoodenFloorTile(Sprite sprite) {
         super(sprite);
     }
 

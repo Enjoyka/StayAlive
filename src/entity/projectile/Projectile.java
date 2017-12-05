@@ -1,6 +1,8 @@
 package entity.projectile;
 
 import entity.Entity;
+import entity.mob.Dummy;
+import entity.spawner.ParticleSpawner;
 import graphics.Sprite;
 
 import java.util.Random;
@@ -41,5 +43,38 @@ public abstract class Projectile extends Entity {
     }
 
     protected void move() {
+    }
+
+    protected void mobHit() {
+        if (level.tileCollision((int) (x + nx), (int) (y + ny), 7, 5, 5)) {
+            level.add(new ParticleSpawner((int) x, (int) y, 50, 20, level));
+            remove();
+        }
+        for (int i = 0; i < level.mobs.size(); i++) {
+            if (x < level.mobs.get(i).getX() + 5 && x > level.mobs.get(i).getX() - 5 &&
+                y < level.mobs.get(i).getY() + 5 && y > level.mobs.get(i).getY() - 5) {
+                level.mobs.get(i).damageMob((int) damage);
+                level.add(new ParticleSpawner((int) x, (int) y, 10, 10, level));
+                remove();
+                return;
+            }
+        }
+        move();
+    }
+
+    protected void playerHit() {
+        if (level.tileCollision((int) (x + nx), (int) (y + ny), 7, 5, 5)) {
+            level.add(new ParticleSpawner((int) x, (int) y, 50, 20, level));
+            remove();
+        }
+        for (int i = 0; i < level.players.size(); i++) {
+            if (x < level.players.get(i).getX() + 5 && x > level.players.get(i).getX() - 5 &&
+                    y < level.players.get(i).getY() + 5 && y > level.players.get(i).getY() - 5) {
+                level.players.get(i).damagePlayer((int) damage);
+                level.add(new ParticleSpawner((int) x, (int) y, 10, 10, level));
+                remove();
+                return;
+            }
+        }
     }
 }

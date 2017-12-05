@@ -17,11 +17,11 @@ public class Level {
     protected int[] tilesInt;
     protected int[] tiles;
 
-    private List<Entity> entities = new ArrayList<Entity>();
-    private List<Projectile> projectiles = new ArrayList<Projectile>();
-    private List<Particle> particles = new ArrayList<Particle>();
-    private List<Player> players = new ArrayList<Player>();
-    private List<Mob> mobs = new ArrayList<Mob>();
+    public List<Entity> entities = new ArrayList<Entity>();
+    public List<Projectile> projectiles = new ArrayList<Projectile>();
+    public List<Particle> particles = new ArrayList<Particle>();
+    public List<Player> players = new ArrayList<Player>();
+    public List<Mob> mobs = new ArrayList<Mob>();
 
     private Comparator<Node> nodeSorter = new Comparator<Node>() {
         public int compare(Node n0, Node n1) {
@@ -245,20 +245,29 @@ public class Level {
         }
         return result;
     }
-
+    // change colors and make level map
     public Tile getTile(int x, int y) {
-        if (x < 0 || y < 0 || x >= width || y >= height) return Tile.voidTile;
-        if (tiles[x + y * width] == Tile.GRASS_COLOR) return Tile.grass;
-        if (tiles[x + y * width] == Tile.FLOWER_COLOR) return Tile.flower;
-        if (tiles[x + y * width] == Tile.ROCK_COLOR) return Tile.rock;
-        if (tiles[x + y * width] == Tile.HEDGE_COLOR) return Tile.hedge;
-        if (tiles[x + y * width] == Tile.SAND_COLOR) return Tile.sand;
-        if (tiles[x + y * width] == Tile.FLOOR_COLOR) return Tile.floor;
-        if (tiles[x + y * width] == Tile.WALL_COLOR) return Tile.wall;
-        if (tiles[x + y * width] == Tile.BROKEN_GROUND_COLOR) return Tile.broken_ground;
-        if (tiles[x + y * width] == Tile.LAVA_COLOR) return Tile.lava;
-        if (tiles[x + y * width] == Tile.WATER_COLOR) return Tile.water;
-        if (tiles[x + y * width] == Tile.ICE_COLOR) return Tile.ice;
+        if (x < 0 || y < 0 || x >= width || y >= height)              return Tile.voidTile;
+        if (tiles[x + y * width] == Tile.GRASS_COLOR)                 return Tile.grass;
+        if (tiles[x + y * width] == Tile.GREEN_HEDGE_COLOR)           return Tile.green_hedge;
+        if (tiles[x + y * width] == Tile.YELLOW_HEDGE_COLOR)          return Tile.yellow_hedge;
+        if (tiles[x + y * width] == Tile.GROUND_COLOR)                return Tile.ground;
+        if (tiles[x + y * width] == Tile.OWERGROW_GROUND_COLOR)       return Tile.owergrown_ground;
+        if (tiles[x + y * width] == Tile.LIGHTER_BROKER_GROUND_COLOR) return Tile.lighter_broken_ground;
+        if (tiles[x + y * width] == Tile.DARKER_BROKER_GROUND_COLOR)  return Tile.darker_broken_ground;
+        if (tiles[x + y * width] == Tile.FLOOR_COLOR)                 return Tile.floor;
+        if (tiles[x + y * width] == Tile.WOODEN_FLOOR_COLOR)          return Tile.wooden_floor;
+        if (tiles[x + y * width] == Tile.WHITE_FLOOR_COLOR)           return Tile.white_floor;
+        if (tiles[x + y * width] == Tile.RED_FLOOR_COLOR)             return Tile.red_floor;
+        if (tiles[x + y * width] == Tile.WALL_COLOR)                  return Tile.wall;
+        if (tiles[x + y * width] == Tile.STONE_WALL_COLOR)            return Tile.stone_wall;
+        if (tiles[x + y * width] == Tile.RED_BRICK_WALL_COLOR)        return Tile.red_brick_wall;
+        if (tiles[x + y * width] == Tile.YELLOW_BRICK_WALL_COLOR)     return Tile.yellow_brick_wall;
+        if (tiles[x + y * width] == Tile.WHITE_BRICK_WALL_COLOR)      return Tile.white_brick_wall;
+        if (tiles[x + y * width] == Tile.BROWN_BRICK_WALL_COLOR)      return Tile.brown_brick_wall;
+        if (tiles[x + y * width] == Tile.SNOW_COLOR)                  return Tile.snow;
+        if (tiles[x + y * width] == Tile.WATER_COLOR)                 return Tile.water;
+        if (tiles[x + y * width] == Tile.ICE_COLOR)                   return Tile.ice;
         return Tile.voidTile;
     }
 }

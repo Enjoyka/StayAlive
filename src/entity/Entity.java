@@ -1,5 +1,6 @@
 package entity;
 
+import entity.mob.Player;
 import graphics.Screen;
 import graphics.Sprite;
 import level.Level;
@@ -14,11 +15,6 @@ public class Entity {
     private boolean removed = false;
 
     protected double x, y;
-
-    protected int leftEdge = 0;
-    protected int rightEdge = 0;
-    protected int topEdge = 0;
-    protected int bottomEdge = 0;
 
     public void update() {
     }
@@ -38,22 +34,6 @@ public class Entity {
 
     public double getY() {
         return y;
-    }
-
-    public int getLeftEdge() {
-        return leftEdge;
-    }
-
-    public int getRightEdge() {
-        return rightEdge;
-    }
-
-    public int getTopEdge() {
-        return topEdge;
-    }
-
-    public int getBottomEdge() {
-        return bottomEdge;
     }
 
     public Sprite getSprite() {

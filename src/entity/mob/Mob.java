@@ -1,8 +1,8 @@
 package entity.mob;
 
 import entity.Entity;
+import entity.projectile.ArcticBurnProjectile;
 import entity.projectile.Projectile;
-import entity.projectile.WizardProjectile;
 import graphics.Screen;
 import graphics.Sprite;
 
@@ -12,9 +12,10 @@ public abstract class Mob extends Entity {
     protected boolean moving = false;
     protected boolean walking = false;
 
-    protected int spriteSize;
     protected int health;
     protected int mana;
+    protected int mobHealth = 100;
+    protected int mobDamage = 10;
 
     protected enum Direction {
         UP, DOWN, LEFT, RIGHT
@@ -68,8 +69,11 @@ public abstract class Mob extends Entity {
         return 1;
     }
 
-    public int getSpriteSize() {
-        return spriteSize;
+    public void damageMob(int damage) {
+        if (mobHealth > 0)
+            mobHealth -= damage;
+        else if (mobHealth <= 0)
+            remove();
     }
 
     public abstract void update();
@@ -77,7 +81,7 @@ public abstract class Mob extends Entity {
     public abstract void render(Screen screen);
 
     protected void shoot(double x, double y, double dir) {
-        Projectile p = new WizardProjectile(x, y, dir);
+        Projectile p = new ArcticBurnProjectile(x, y, dir);
         level.add(p);
     }
 

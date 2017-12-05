@@ -27,6 +27,7 @@ public class Shooter extends Mob {
         this.x = x << 4;
         this.y = y << 4;
         sprite = Sprite.dummy;
+        mobHealth = 150;
     }
 
     public void update() {
@@ -67,7 +68,7 @@ public class Shooter extends Mob {
         } else {
             walking = false;
         }
-        shootRandom();
+        shootClosest();
     }
 
     private void shootRandom() {
@@ -88,7 +89,7 @@ public class Shooter extends Mob {
     }
 
     private void shootClosest() {
-        List<Entity> entities = level.getEntities(this, 10);
+        List<Entity> entities = level.getEntities(this, 100);
         entities.add(level.getClientPlayer());
 
         double min = 0;
@@ -105,7 +106,8 @@ public class Shooter extends Mob {
             double dx = closest.getX() - x;
             double dy = closest.getY() - y;
             double dir = Math.atan2(dy, dx);
-            shoot(x, y, dir);
+            if (time % 30 == 1)
+                shoot(x, y, dir);
         }
     }
 

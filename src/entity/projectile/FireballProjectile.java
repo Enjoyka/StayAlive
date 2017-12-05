@@ -1,27 +1,23 @@
 package entity.projectile;
 
-import entity.spawner.ParticleSpawner;
 import graphics.Screen;
 import graphics.Sprite;
 
-public class WizardProjectile extends Projectile {
+public class FireballProjectile extends Projectile {
     public final static int FIRE_RATE = 10; // higher is slower
 
-    public WizardProjectile(double x, double y, double dir) {
+    public FireballProjectile(double x, double y, double dir) {
         super(x, y, dir);
         range = 100;
         speed = 5;
         damage = 20;
-        sprite = Sprite.rotate(Sprite.projectile_arrow, angle);
+        sprite = Sprite.rotate(Sprite.projectile_fireball, angle);
         nx = speed * Math.cos(angle);
         ny = speed * Math.sin(angle);
     }
 
     public void update() {
-        if (level.tileCollision((int) (x + nx), (int) (y + ny), 7, 5, 5)) {
-            level.add(new ParticleSpawner((int) x, (int) y, 50, 20, level));
-            remove();
-        }
+        mobHit();
         move();
     }
 

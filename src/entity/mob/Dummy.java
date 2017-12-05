@@ -21,11 +21,7 @@ public class Dummy extends Mob {
         this.x = x << 4;
         this.y = y << 4;
         sprite = down;
-
-        leftEdge = 4;
-        rightEdge = 4;
-        topEdge = spriteSize / 2;
-        bottomEdge = 0;
+        mobHealth = 100;
     }
 
     public void update() {

@@ -9,37 +9,48 @@ public class Sprite {
     public final int SIZE;
     public int[] pixels;
 
-    public static Sprite voidSprite = new Sprite(16, 0);
+    public static Sprite voidSprite             = new Sprite(16, 0);
 
     //Spawn level here:
-    public static Sprite grass = new Sprite(16, 0, 1, SpriteSheet.tiles);
-    public static Sprite flower = new Sprite(16, 1, 1, SpriteSheet.tiles);
-    public static Sprite rock = new Sprite(16, 2, 0, SpriteSheet.tiles);
-    public static Sprite hedge = new Sprite(16 , 3 , 0, SpriteSheet.tiles);
-    public static Sprite sand = new Sprite(16 , 3 , 1, SpriteSheet.tiles);
-    public static Sprite floor = new Sprite(16 , 2 , 3, SpriteSheet.tiles);
-    public static Sprite broken_ground = new Sprite(16 , 1 , 1, SpriteSheet.tiles);
-    public static Sprite wall = new Sprite(16 , 2 , 0, SpriteSheet.tiles);
-    public static Sprite lava = new Sprite(16 , 4 , 1, SpriteSheet.tiles);
-    public static Sprite water = new Sprite(16 , 5 , 1, SpriteSheet.tiles);
-    public static Sprite ice = new Sprite(16 , 5 , 0, SpriteSheet.tiles);
-    //mb make more sprites
+    public static Sprite grass                  = new Sprite(16, 0, 2, SpriteSheet.tiles);
+
+    public static Sprite green_hedge            = new Sprite(16, 3, 0, SpriteSheet.tiles);
+    public static Sprite yellow_hedge           = new Sprite(16, 3, 0, SpriteSheet.tiles);
+
+    public static Sprite ground                 = new Sprite(16, 1, 2, SpriteSheet.tiles);
+    public static Sprite owergrown_ground       = new Sprite(16, 1, 1, SpriteSheet.tiles);
+    public static Sprite lighter_broken_ground  = new Sprite(16, 1, 0, SpriteSheet.tiles);
+    public static Sprite darker_broken_ground   = new Sprite(16, 1, 3, SpriteSheet.tiles);
+
+    public static Sprite floor                  = new Sprite(16, 2, 2, SpriteSheet.tiles);
+    public static Sprite wooden_floor           = new Sprite(16, 2, 3, SpriteSheet.tiles);
+    public static Sprite white_floor            = new Sprite(16, 2, 0, SpriteSheet.tiles);
+    public static Sprite red_floor              = new Sprite(16, 2, 1, SpriteSheet.tiles);
+
+    public static Sprite wall                   = new Sprite(16, 2, 3, SpriteSheet.tiles);
+    public static Sprite stone_wall             = new Sprite(16, 2, 2, SpriteSheet.tiles);
+    public static Sprite red_brick_wall         = new Sprite(16, 2, 0, SpriteSheet.tiles);
+    public static Sprite yellow_brick_wall      = new Sprite(16, 2, 1, SpriteSheet.tiles);
+    public static Sprite white_brick_wall       = new Sprite(16, 2, 5, SpriteSheet.tiles);
+    public static Sprite brown_brick_wall       = new Sprite(16, 2, 4, SpriteSheet.tiles);
+
+    public static Sprite snow                   = new Sprite(16, 5, 0, SpriteSheet.tiles);
+    public static Sprite water                  = new Sprite(16, 5, 1, SpriteSheet.tiles);
+    public static Sprite ice                    = new Sprite(16, 5, 2, SpriteSheet.tiles);
 
     //Player sprites here:
-    public static Sprite player_forward = new Sprite(16, 0, 12, SpriteSheet.tiles);
-    public static Sprite player_right = new Sprite(16, 1, 12, SpriteSheet.tiles);
-    public static Sprite player_back = new Sprite(16, 2, 12, SpriteSheet.tiles);
-    public static Sprite player_left = new Sprite(16, 3, 12, SpriteSheet.tiles);
+    public static Sprite player                 = new Sprite(16, 0, 12, SpriteSheet.tiles);
 
-    public static Sprite dummy = new Sprite(16, 0, 0, SpriteSheet.dummy_down);
+    // Mob sprites here:
+    public static Sprite dummy                  = new Sprite(16, 0, 0, SpriteSheet.dummy_down);
 
     //Projectile sprites here:
-    public static Sprite projectile_fireball = new Sprite(16, 0, 0, SpriteSheet.projectile_wizard);
+    public static Sprite projectile_fireball    = new Sprite(16, 0, 0, SpriteSheet.projectile_wizard);
     public static Sprite projectile_arctic_burn = new Sprite(16, 1, 0, SpriteSheet.projectile_wizard);
-    public static Sprite projectile_arrow = new Sprite(16, 2, 0, SpriteSheet.projectile_wizard);
+    public static Sprite projectile_arrow       = new Sprite(16, 2, 0, SpriteSheet.projectile_wizard);
 
     //Particle sprites here:
-    public static Sprite particle_normal = new Sprite(3, 0xC3C3C3);
+    public static Sprite particle_normal        = new Sprite(3, 0xC3C3C3);
     //for fireball - FF0000 or FF7F27; arctic burn - 3F48CC or 00A2E8; arrow - C3C3C3 or 7F7F7F
 
     protected Sprite(SpriteSheet sheet, int width, int height) {

@@ -3,7 +3,7 @@ package level.tile;
 import graphics.Screen;
 import graphics.Sprite;
 
-public class IceTile extends Tile{
+public class IceTile extends Tile {
     public IceTile(Sprite sprite) {
         super(sprite);
     }
