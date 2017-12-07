@@ -4,9 +4,9 @@ import java.applet.Applet;
 import java.applet.AudioClip;
 
 public class Sound {
-    public static final Sound level = new Sound("/res/audio/level.wav");
-    public static final Sound menu = new Sound("/res/audio/menu.wav");
-    public static final Sound gameover = new Sound("/res/audio/gameover.wav");
+    public static final Sound level = new Sound("D:\\Work\\IdeaProjects\\StayAlive\\res\\audio\\level.wav");
+    public static final Sound menu = new Sound("D:\\Work\\IdeaProjects\\StayAlive\\res\\audio\\menu.wav");
+    public static final Sound gameover = new Sound("D:\\Work\\IdeaProjects\\StayAlive\\res\\audio\\gameover.wav");
 
     private AudioClip sound;
 

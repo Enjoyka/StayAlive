@@ -10,10 +10,10 @@ import util.Vector2i;
 import java.util.List;
 
 public class Star extends Mob {
-    private AnimatedSprites up = new AnimatedSprites(SpriteSheet.dummy_up, 16, 16, 4);
-    private AnimatedSprites right = new AnimatedSprites(SpriteSheet.dummy_right, 16, 16, 4);
-    private AnimatedSprites down = new AnimatedSprites(SpriteSheet.dummy_down, 16, 16, 4);
-    private AnimatedSprites left = new AnimatedSprites(SpriteSheet.dummy_left, 16, 16, 4);
+    private AnimatedSprites up = new AnimatedSprites(SpriteSheet.star_up, 16, 16, 4);
+    private AnimatedSprites right = new AnimatedSprites(SpriteSheet.star_right, 16, 16, 4);
+    private AnimatedSprites down = new AnimatedSprites(SpriteSheet.star_down, 16, 16, 4);
+    private AnimatedSprites left = new AnimatedSprites(SpriteSheet.star_left, 16, 16, 4);
 
     private AnimatedSprites animatedSprite = down;
 
@@ -26,7 +26,7 @@ public class Star extends Mob {
     public Star(int x, int y) {
         this.x = x << 4;
         this.y = y << 4;
-        sprite = Sprite.dummy;
+        sprite = Sprite.star;
     }
 
     private void move() {

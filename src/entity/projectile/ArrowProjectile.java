@@ -34,6 +34,6 @@ public class ArrowProjectile extends Projectile {
     }
 
     public void render(Screen screen) {
-        screen.renderProjectile((int) x, (int) y, this);
+        screen.renderProjectile((int) x, (int) y - 8, this);
     }
 }

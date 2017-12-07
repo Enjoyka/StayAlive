@@ -14,7 +14,7 @@ public class Sprite {
     //Spawn level here:
     public static Sprite grass                  = new Sprite(16, 0, 2, SpriteSheet.tiles);
 
-    public static Sprite green_hedge            = new Sprite(16, 3, 0, SpriteSheet.tiles);
+    public static Sprite green_hedge            = new Sprite(16, 4, 3, SpriteSheet.tiles);
     public static Sprite yellow_hedge           = new Sprite(16, 3, 0, SpriteSheet.tiles);
 
     public static Sprite ground                 = new Sprite(16, 1, 2, SpriteSheet.tiles);
@@ -32,7 +32,7 @@ public class Sprite {
     public static Sprite red_brick_wall         = new Sprite(16, 2, 0, SpriteSheet.tiles);
     public static Sprite yellow_brick_wall      = new Sprite(16, 2, 1, SpriteSheet.tiles);
     public static Sprite white_brick_wall       = new Sprite(16, 2, 5, SpriteSheet.tiles);
-    public static Sprite brown_brick_wall       = new Sprite(16, 2, 4, SpriteSheet.tiles);
+    public static Sprite brown_brick_wall       = new Sprite(16, 2, 3, SpriteSheet.tiles);
 
     public static Sprite snow                   = new Sprite(16, 5, 0, SpriteSheet.tiles);
     public static Sprite water                  = new Sprite(16, 5, 1, SpriteSheet.tiles);
@@ -43,6 +43,9 @@ public class Sprite {
 
     // Mob sprites here:
     public static Sprite dummy                  = new Sprite(16, 0, 0, SpriteSheet.dummy_down);
+    public static Sprite chaser                 = new Sprite(16, 0, 0, SpriteSheet.chaser_down);
+    public static Sprite star                   = new Sprite(16, 0, 0, SpriteSheet.star_down);
+    public static Sprite shooter                = new Sprite(16, 0, 0, SpriteSheet.star_down);
 
     //Projectile sprites here:
     public static Sprite projectile_fireball    = new Sprite(16, 0, 0, SpriteSheet.projectile_wizard);

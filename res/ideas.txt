@@ -1,0 +1,21 @@
+EXP: 200, 500, 900, 1400, 2000, 2700, 3500, 4400, 5400, 6500, 7700, 9000
+
+        // TODO: mb make gpm and exp
+        // TODO: change UI colors
+        // TODO: make label to print count mobs and how much destroyed
+        // TODO: make gold per minute and exp per minute
+
+Create:
+HP, MP, EXP, GOLD
+Level changing
+Day/Night system (Light)
+Minimap
+Inventory (Items)
+Multiplayer
+UI (Cursor)
+
+Fix:
+Font
+Menu 
+Sounds
+Sprites

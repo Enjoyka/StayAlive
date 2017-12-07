@@ -8,10 +8,10 @@ import graphics.SpriteSheet;
 import java.util.List;
 
 public class Chaser extends Mob {
-    private AnimatedSprites up = new AnimatedSprites(SpriteSheet.dummy_up, 16, 16, 4);
-    private AnimatedSprites right = new AnimatedSprites(SpriteSheet.dummy_right, 16, 16, 4);
-    private AnimatedSprites down = new AnimatedSprites(SpriteSheet.dummy_down, 16, 16, 4);
-    private AnimatedSprites left = new AnimatedSprites(SpriteSheet.dummy_left, 16, 16, 4);
+    private AnimatedSprites up = new AnimatedSprites(SpriteSheet.chaser_up, 16, 16, 4);
+    private AnimatedSprites right = new AnimatedSprites(SpriteSheet.chaser_right, 16, 16, 4);
+    private AnimatedSprites down = new AnimatedSprites(SpriteSheet.chaser_down, 16, 16, 4);
+    private AnimatedSprites left = new AnimatedSprites(SpriteSheet.chaser_left, 16, 16, 4);
 
     private AnimatedSprites animatedSprite = down;
 
@@ -22,7 +22,8 @@ public class Chaser extends Mob {
     public Chaser(int x, int y) {
         this.x = x << 4;
         this.y = y << 4;
-        sprite = Sprite.dummy;
+        sprite = Sprite.chaser;
+        mobHealth = 1000;
     }
 
     private void move() {
@@ -73,6 +74,6 @@ public class Chaser extends Mob {
 
     public void render(Screen screen) {
         sprite = animatedSprite.getSprite();
-        screen.renderMob((int) x, (int) y, sprite);
+        screen.renderMob((int) x - 16, (int) y - 16, sprite);
     }
 }

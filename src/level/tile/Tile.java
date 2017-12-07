@@ -28,26 +28,29 @@ public class Tile {
     public static Tile ice                   = new IceTile(Sprite.ice);
     public static Tile voidTile              = new VoidTile(Sprite.voidSprite);
 
-    public static final int GRASS_COLOR                 = 0xFF00FF00;
-    public static final int GREEN_HEDGE_COLOR           = 0xFF072F18;//#072F18
-    public static final int YELLOW_HEDGE_COLOR          = 0xFFFFFF00;//#C27D09
-    public static final int GROUND_COLOR                = 0xFF2F2E22;//#2F2E22
-    public static final int OWERGROW_GROUND_COLOR       = 0xFF544E42;//#544E42
-    public static final int LIGHTER_BROKER_GROUND_COLOR = 0xFF404040;//#404040
-    public static final int DARKER_BROKER_GROUND_COLOR  = 0xFF24231F;//#24231F
-    public static final int FLOOR_COLOR                 = 0xFF4F2E13;//#4F2E13
-    public static final int WOODEN_FLOOR_COLOR          = 0xFF2F0D02;//#2F0D02
-    public static final int WHITE_FLOOR_COLOR           = 0xFFCFC9BE;//#CFC9BE
-    public static final int RED_FLOOR_COLOR             = 0xFF6F0200;//#6F0200
-    public static final int WALL_COLOR                  = 0xFF7F7F7F;//#262E31
-    public static final int STONE_WALL_COLOR            = 0xFF232B2D;//#232B2D
-    public static final int RED_BRICK_WALL_COLOR        = 0xFFCE4C52;//#CE4C52
-    public static final int YELLOW_BRICK_WALL_COLOR     = 0xFFAF8820;//#AF8820
-    public static final int WHITE_BRICK_WALL_COLOR      = 0xFFE2DFC7;//#E2DFC7
-    public static final int BROWN_BRICK_WALL_COLOR      = 0xFF814C27;//#814C27
-    public static final int SNOW_COLOR                  = 0xFF9AAAE0;//#9AAAE0
-    public static final int WATER_COLOR                 = 0xFF88A5FF;//#88A5FF
-    public static final int ICE_COLOR                   = 0xFFD2E3EE;//#D2E3EE
+    // remake colors and mb repaint level
+    public static final int GRASS_COLOR                 = 0xFFFF0000;
+    public static final int GROUND_COLOR                = 0xFF7F4000;//#2F2E22
+    public static final int GREEN_HEDGE_COLOR           = 0xFF7F7F00;//#072F18 // brown +-
+//    public static final int GREEN_HEDGE_COLOR           = 0xFFFFFF00;//#072F18 // brown +-
+    public static final int RED_BRICK_WALL_COLOR        = 0xFFFF7F00;//#CE4C52
+    public static final int FLOOR_COLOR                 = 0xFF00FFFF;//#4F2E13
+    public static final int WALL_COLOR                  = 0xFFCACACA;//#262E31
+    public static final int STONE_WALL_COLOR            = 0xFF7F7F7F;//#232B2D
+    public static final int YELLOW_HEDGE_COLOR          = 0xFFFF00FF;//#C27D09
+    public static final int WHITE_BRICK_WALL_COLOR      = 0xFFFF;//#E2DFC7
+
+    public static final int OWERGROW_GROUND_COLOR       = 0xFFFF;//#544E42
+    public static final int LIGHTER_BROKER_GROUND_COLOR = 0xFFFF;//#404040
+    public static final int DARKER_BROKER_GROUND_COLOR  = 0xFFFF;//#24231F
+    public static final int WOODEN_FLOOR_COLOR          = 0xFFFF;//#2F0D02
+    public static final int WHITE_FLOOR_COLOR           = 0xFFFF;//#CFC9BE
+    public static final int RED_FLOOR_COLOR             = 0xFFFF;//#6F0200
+    public static final int YELLOW_BRICK_WALL_COLOR     = 0xFFFF;//#AF8820
+    public static final int BROWN_BRICK_WALL_COLOR      = 0xFFFF;//#814C27
+    public static final int SNOW_COLOR                  = 0xFFFF;//#9AAAE0
+    public static final int WATER_COLOR                 = 0xFFFF;//#88A5FF
+    public static final int ICE_COLOR                   = 0xFFFF;//#D2E3EE
 
     public Tile(Sprite sprite) {
         this.sprite = sprite;

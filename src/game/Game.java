@@ -52,8 +52,8 @@ public class Game extends Canvas implements Runnable {
         managerUI = new ManagerUI();
         frame = new JFrame();
         key = new Keyboard();
-        level = new SpawnLevel("D:\\Work\\IdeaProjects\\StayAlive\\res\\levels\\level.png");
-        TileCoordinate playerSpawn = new TileCoordinate(10, 10);
+        level = new SpawnLevel("D:\\Work\\IdeaProjects\\StayAlive\\res\\levels\\lvl.png");
+        TileCoordinate playerSpawn = new TileCoordinate(65,40);
         player = new Player("Player", playerSpawn.x(), playerSpawn.y(), key);
         level.add(player);
         menu = new MainMenu(key);

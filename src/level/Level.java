@@ -67,7 +67,6 @@ public class Level {
 
         for (int i = 0; i < mobs.size(); i++ )
             mobs.get(i).update();
-
         remove();
     }
 

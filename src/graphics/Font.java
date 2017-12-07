@@ -1,9 +1,9 @@
 package graphics;
 
 public class Font {
-    private static SpriteSheet font = new SpriteSheet("D:\\Work\\IdeaProjects\\StayAlive\\res\\fonts\\font.png", 8); //default 16
+    private static SpriteSheet font = new SpriteSheet("D:\\Work\\IdeaProjects\\StayAlive\\res\\fonts\\default_font.png", 8); //default 16
     private static Sprite[] characters = Sprite.split(font);
-    private static String charIndex = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!?";
+    private static String charIndex = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!?.";
 
     public Font() {
     }

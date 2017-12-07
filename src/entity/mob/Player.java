@@ -1,5 +1,6 @@
 package entity.mob;
 
+import entity.projectile.ArrowProjectile;
 import entity.projectile.Projectile;
 import entity.projectile.FireballProjectile;
 import game.Game;
@@ -21,10 +22,17 @@ public class Player extends Mob {
     private Sprite sprite;
     private String name;
 
+    protected static int kills = 0;
+    protected static int expirience = 0;
+    protected static int gold = 0;
+
+    private int time = 0;
+    private int lvl = 1;
     private int animate = 0;
     private int fireRate = 0;
-    protected int playerHealth = 100;
-    protected int playerMana = 1000;
+    private int spellRate = 0;
+    private int playerHealth = 100;
+    private int playerMana = 1000;
 
     private boolean walking = false;
 
@@ -56,7 +64,7 @@ public class Player extends Mob {
         this.input = input;
 
         sprite = Sprite.player;
-        fireRate = FireballProjectile.FIRE_RATE;
+        fireRate = ArrowProjectile.FIRE_RATE;
 
         // User Interface
         ui = Game.getManagerUI();
@@ -64,40 +72,46 @@ public class Player extends Mob {
         ui.addPanel(panel);
 
         // Player name
-        UILabel nameLabel = new UILabel(new Vector2i(10, 240), name);
+        UILabel nameLabel = new UILabel(new Vector2i(10, 40), name);
         nameLabel.setColor(0xFFFFFF);
         nameLabel.setFont(new Font("Helvetica", Font.BOLD, 32));
         nameLabel.dropShadow = true;
         panel.addComponent(nameLabel);
 
         // Level
-        uiLevelBar = new UIProgressBar(new Vector2i(10, 255), new Vector2i(85 * 3 - 25, 20));
-        uiLevelBar.setColor(0x4AFF4A);
+        uiLevelBar = new UIProgressBar(new Vector2i(10, 55), new Vector2i(85 * 3 - 25, 20));
+        uiLevelBar.setColor(0x24a024);
+        uiLevelBar.setForegroundColor(0x38ff38);
         panel.addComponent(uiLevelBar);
 
-        UILabel lvlLabel = new UILabel(new Vector2i(uiLevelBar.position).add(new Vector2i(80, 17)), "LVL 1");
+        UILabel lvlLabel = new UILabel(new Vector2i(uiLevelBar.position).add(new Vector2i(80, 17)), "LEVEL: " + lvl);
         lvlLabel.setColor(0xFFFFFF);
         lvlLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        lvlLabel.dropShadow = true;
         panel.addComponent(lvlLabel);
 
         // Health
-        uiHealthBar = new UIProgressBar(new Vector2i(10, 285), new Vector2i(85 * 3 - 25, 20));
-        uiHealthBar.setColor(0xFF2B2B);
+        uiHealthBar = new UIProgressBar(new Vector2i(10, 85), new Vector2i(85 * 3 - 25, 20));
+        uiHealthBar.setColor(0xc11f1f);
+        uiHealthBar.setForegroundColor(0xf21f1f);
         panel.addComponent(uiHealthBar);
 
-        UILabel hpLabel = new UILabel(new Vector2i(uiHealthBar.position).add(new Vector2i(80, 17)), "HP: " + playerHealth);
+        UILabel hpLabel = new UILabel(new Vector2i(uiHealthBar.position).add(new Vector2i(80, 17)), "HEALTH");
         hpLabel.setColor(0xFFFFFF);
         hpLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        hpLabel.dropShadow = true;
         panel.addComponent(hpLabel);
 
         // Mana
-        uiManaBar = new UIProgressBar(new Vector2i(10, 315), new Vector2i(85 * 3 - 25, 20));
-        uiManaBar.setColor(0x4B4BFF);
+        uiManaBar = new UIProgressBar(new Vector2i(10, 115), new Vector2i(85 * 3 - 25, 20));
+        uiManaBar.setColor(0x2f2fbf); //
+        uiManaBar.setForegroundColor(0x4242ff); // change to dark blue or light blue, idk
         panel.addComponent(uiManaBar);
 
-        UILabel mpLabel = new UILabel(new Vector2i(uiManaBar.position).add(new Vector2i(80, 17)), "MP: " + playerMana);
+        UILabel mpLabel = new UILabel(new Vector2i(uiManaBar.position).add(new Vector2i(80, 17)), "MANA");
         mpLabel.setColor(0xFFFFFF);
         mpLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        mpLabel.dropShadow = true;
         panel.addComponent(mpLabel);
     }
 
@@ -106,12 +120,15 @@ public class Player extends Mob {
     }
 
     public void update() {
+        time++;
+
         if (walking)
             animatedSprite.update();
         else
             animatedSprite.setFrame(0);
 
         if (fireRate > 0) fireRate--;
+        if (spellRate > 0) spellRate--;
 
         double xa = 0, ya = 0;
         double speed = 1;
@@ -143,9 +160,25 @@ public class Player extends Mob {
         } else {
             walking = false;
         }
-        clear();
-        updateShooting();
 
+        if (time % 30 == 1)
+            if (playerMana < 1000) playerMana++;
+
+        if (time % 60 == 1)
+            if (playerHealth < 100) playerHealth++;
+
+        updateShooting();
+        if (playerMana > 50) updateSpell();
+
+        clear();
+
+        if (time % 360 == 1) {
+            System.out.println("ENEMIES LEFT:      " + level.mobs.size());
+            System.out.println("ENEMIES DESTROYED: " + kills);
+            System.out.println("EXPIRIENCE EARNED: " + expirience);
+            System.out.println("GOLD EARNED:       " + gold);
+        }
+        uiLevelBar.setProgress(lvl / 10.0);
         uiHealthBar.setProgress(playerHealth / 100.0);
         uiManaBar.setProgress(playerMana / 1000.0);
     }
@@ -160,12 +193,16 @@ public class Player extends Mob {
     public void damagePlayer(int damage) {
         if (playerHealth > 0)
             playerHealth -= damage;
-        else if (playerHealth <= 0)
+        else if (playerHealth < 0)
             System.out.println("GAME OVER");
-        //make if player hp is 0 or lower - end game or smthng else
     }
 
     protected void shoot(double x, double y, double dir) {
+        Projectile p = new ArrowProjectile(x, y, dir);
+        level.add(p);
+    }
+
+    protected void spell(double x, double y, double dir) {
         Projectile p = new FireballProjectile(x, y, dir);
         level.add(p);
     }
@@ -177,7 +214,19 @@ public class Player extends Mob {
             double dy = Mouse.getY() - Game.getWindowHeight() / 2;
             double dir = Math.atan2(dy, dx);
             shoot(x, y, dir);
-            fireRate = FireballProjectile.FIRE_RATE;
+            fireRate = ArrowProjectile.FIRE_RATE;
+        }
+    }
+    // todo: remake players and mobs projectiles usage - give mobs spell or smthng else, and give player bullets or other
+    private void updateSpell() {
+        if (Mouse.getX() > 660) return;
+        if (Mouse.getButton() == 3 && spellRate <= 0) {
+            double dx = Mouse.getX() - Game.getWindowWidth() / 2;
+            double dy = Mouse.getY() - Game.getWindowHeight() / 2;
+            double dir = Math.atan2(dy, dx);
+            playerMana -= 50;
+            spell(x, y, dir);
+            spellRate = FireballProjectile.FIRE_RATE;
         }
     }
 

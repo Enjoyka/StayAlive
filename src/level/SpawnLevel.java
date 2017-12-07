@@ -12,9 +12,10 @@ import java.io.IOException;
 import java.util.Random;
 
 public class SpawnLevel extends Level {
-    private final int DUMMY_NUMBER = 1;
-    private final int SHOOTER_NUMBER = 5;
-    private final int CHASER_NUMBER = 2;
+    private final int DUMMY_NUMBER = 50;
+    private final int SHOOTER_NUMBER = 50;
+    private final int CHASER_NUMBER = 1;
+    private final int STAR_NUMBER = 1;
     private Random random;
 
     public SpawnLevel(String path) {
@@ -34,38 +35,25 @@ public class SpawnLevel extends Level {
             e.printStackTrace();
             System.out.println("Exception! Could not load Level file!");
         }
-        add(new Dummy(11, 11));
-        add(new Shooter(2, 2));
+        for (int i = 0; i < DUMMY_NUMBER; i++) {
+            int x = random.nextInt(width);
+            int y = random.nextInt(height);
+            while (this.getTile(x, y).solid()) {
+                x = random.nextInt(width);
+                y = random.nextInt(height);
+            }
+            add(new Dummy(x, y));
+        }
 
-//        for (int i = 0; i < DUMMY_NUMBER; i++) {
-//            int x = random.nextInt(width);
-//            int y = random.nextInt(height);
-//            while (this.getTile(x, y).solid()) {
-//                x = random.nextInt(width);
-//                y = random.nextInt(height);
-//            }
-//            add(new Dummy(x, y));
-//        }
-//
-//        for (int i = 0; i < SHOOTER_NUMBER; i++) {
-//            int x = random.nextInt(width);
-//            int y = random.nextInt(height);
-//            while (this.getTile(x, y).solid()) {
-//                x = random.nextInt(width);
-//                y = random.nextInt(height);
-//            }
-//            add(new Shooter(x, y));
-//        }
-//
-//        for (int i = 0; i < CHASER_NUMBER; i++) {
-//            int x = random.nextInt(width);
-//            int y = random.nextInt(height);
-//            while (this.getTile(x, y).solid()) {
-//                x = random.nextInt(width);
-//                y = random.nextInt(height);
-//            }
-//            add(new Chaser(x, y));
-//        }
+        for (int i = 0; i < SHOOTER_NUMBER; i++) {
+            int x = random.nextInt(width);
+            int y = random.nextInt(height);
+            while (this.getTile(x, y).solid()) {
+                x = random.nextInt(width);
+                y = random.nextInt(height);
+            }
+            add(new Shooter(x, y));
+        }
     }
 
     protected void generateLevel() {

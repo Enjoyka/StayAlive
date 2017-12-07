@@ -2,20 +2,22 @@ package entity.mob;
 
 import entity.Entity;
 import entity.projectile.ArcticBurnProjectile;
+import entity.projectile.ArrowProjectile;
 import entity.projectile.Projectile;
 import graphics.Screen;
 import graphics.Sprite;
+
+import static entity.mob.Player.expirience;
+import static entity.mob.Player.gold;
+import static entity.mob.Player.kills;
 
 public abstract class Mob extends Entity {
     protected Sprite sprite;
 
     protected boolean moving = false;
     protected boolean walking = false;
-
-    protected int health;
-    protected int mana;
     protected int mobHealth = 100;
-    protected int mobDamage = 10;
+    protected int destroyed = 0;
 
     protected enum Direction {
         UP, DOWN, LEFT, RIGHT
@@ -70,10 +72,14 @@ public abstract class Mob extends Entity {
     }
 
     public void damageMob(int damage) {
-        if (mobHealth > 0)
+        if (mobHealth > 0) {
             mobHealth -= damage;
-        else if (mobHealth <= 0)
+        } else if (mobHealth <= 0) {
+            kills++;
+            expirience += 100;
+            gold += 50;
             remove();
+        }
     }
 
     public abstract void update();

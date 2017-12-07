@@ -1,6 +1,5 @@
 package entity;
 
-import entity.mob.Player;
 import graphics.Screen;
 import graphics.Sprite;
 import level.Level;
